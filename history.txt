@@ -1,0 +1,9 @@
+Build 1
+
+Initial import into git.
+Basic layout of form complete.
+basic programming code complete.
+
+The program accepts a birthday and draws the biorhythms.
+
+needs adding to and making more rubust.

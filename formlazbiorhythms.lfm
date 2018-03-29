@@ -1,0 +1,208 @@
+object frmLazBiorhythms: TfrmLazBiorhythms
+  Left = 1224
+  Height = 400
+  Top = 144
+  Width = 600
+  Caption = 'frmLazBiorhythms'
+  ClientHeight = 400
+  ClientWidth = 600
+  Constraints.MinHeight = 400
+  Constraints.MinWidth = 600
+  OnCreate = FormCreate
+  LCLVersion = '1.8.2.0'
+  object ChrtBiorhythms: TChart
+    Left = -16
+    Height = 200
+    Top = 0
+    Width = 605
+    AxisList = <    
+      item
+        Marks.LabelBrush.Style = bsClear
+        Minors = <>
+        Title.LabelFont.Orientation = 900
+        Title.LabelBrush.Style = bsClear
+      end    
+      item
+        Alignment = calBottom
+        Marks.LabelFont.Orientation = 900
+        Marks.Format = '%2:s'
+        Marks.LabelBrush.Style = bsClear
+        Marks.Source = DateTimeIntervalChartSource1
+        Marks.Style = smsLabel
+        Minors = <>
+        Title.LabelBrush.Style = bsClear
+      end>
+    Foot.Brush.Color = clBtnFace
+    Foot.Font.Color = clBlue
+    Title.Brush.Color = clBtnFace
+    Title.Font.Color = clBlue
+    Title.Text.Strings = (
+      'TAChart'
+    )
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    ParentColor = True
+    object physical: TLineSeries
+      Title = 'physical'
+      LinePen.Color = clRed
+    end
+    object emotional: TLineSeries
+      Title = 'emotional'
+      LinePen.Color = clGreen
+    end
+    object intellectual: TLineSeries
+      Title = 'intellectual'
+      LinePen.Color = clBlue
+    end
+    object primaryCombined: TLineSeries
+      Title = 'primaryCombined'
+      LinePen.Color = clAqua
+    end
+    object todayMark: TBarSeries
+      Title = 'todayMark'
+      BarBrush.Color = clYellow
+      BarWidthPercent = 20
+      ZeroLevel = -2.5
+    end
+    object spiritial: TLineSeries
+      Title = 'spiritial'
+      LinePen.Color = clMaroon
+    end
+    object awareness: TLineSeries
+      Title = 'awareness'
+      LinePen.Color = clFuchsia
+    end
+    object aesthetic: TLineSeries
+      Title = 'aesthetic'
+      LinePen.Color = clTeal
+    end
+    object intuition: TLineSeries
+      Title = 'intuition'
+      LinePen.Color = clSilver
+    end
+    object secondaryCombined: TLineSeries
+      Title = 'secondaryCombined'
+      LinePen.Color = clOlive
+    end
+  end
+  object ChckGrpPrimaryRhythms: TCheckGroup
+    AnchorSideRight.Control = Panel1
+    Left = 8
+    Height = 88
+    Top = 208
+    Width = 270
+    Anchors = [akLeft, akRight, akBottom]
+    AutoFill = True
+    BorderSpacing.Right = 10
+    Caption = 'Primary Biorhythms'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.TopBottomSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 2
+    ClientHeight = 68
+    ClientWidth = 266
+    Columns = 2
+    Items.Strings = (
+      'Physical'
+      'Emotional'
+      'Intellectual'
+      'Combined'
+    )
+    OnItemClick = ChckGrpPrimaryRhythmsItemClick
+    TabOrder = 1
+    Data = {
+      0400000002020202
+    }
+  end
+  object GroupBox1: TGroupBox
+    Left = 8
+    Height = 65
+    Top = 304
+    Width = 573
+    Anchors = [akLeft, akRight, akBottom]
+    Caption = 'Birthdate'
+    ClientHeight = 45
+    ClientWidth = 569
+    TabOrder = 2
+    object DtEdtBirthDay: TDateEdit
+      Left = 16
+      Height = 23
+      Top = 8
+      Width = 103
+      CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+      DateOrder = doNone
+      ButtonWidth = 23
+      NumGlyphs = 1
+      MaxLength = 0
+      OnChange = DtEdtBirthDayChange
+      TabOrder = 0
+    end
+    object lblBirthdayInfo: TLabel
+      Left = 144
+      Height = 21
+      Top = 10
+      Width = 102
+      Caption = 'lblBirthdayInfo'
+      Font.Height = -16
+      ParentColor = False
+      ParentFont = False
+    end
+  end
+  object ChckGrpSecondaryRhythms: TCheckGroup
+    AnchorSideLeft.Control = Panel1
+    AnchorSideLeft.Side = asrBottom
+    Left = 314
+    Height = 89
+    Top = 207
+    Width = 267
+    Anchors = [akLeft, akRight, akBottom]
+    AutoFill = True
+    BorderSpacing.Left = 10
+    Caption = 'Secondary Rhythms'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.TopBottomSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 2
+    ClientHeight = 69
+    ClientWidth = 263
+    Columns = 2
+    Items.Strings = (
+      'Spirtual'
+      'Awareness'
+      'Aesthetic'
+      'Intuition'
+      'Combined'
+    )
+    OnItemClick = ChckGrpSecondaryRhythmsItemClick
+    TabOrder = 3
+    Data = {
+      050000000202020202
+    }
+  end
+  object Panel1: TPanel
+    AnchorSideLeft.Control = ChckGrpPrimaryRhythms
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideRight.Control = ChckGrpSecondaryRhythms
+    AnchorSideRight.Side = asrCenter
+    Left = 288
+    Height = 80
+    Top = 216
+    Width = 16
+    Anchors = [akBottom]
+    TabOrder = 4
+  end
+  object DateTimeIntervalChartSource1: TDateTimeIntervalChartSource
+    DateTimeFormat = 'DD/MM/YYYY'
+    Steps = [dtsYear, dtsMonth, dtsDay]
+    SuppressPrevUnit = False
+    left = 416
+    top = 328
+  end
+end
