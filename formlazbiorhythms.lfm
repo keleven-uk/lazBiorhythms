@@ -1,19 +1,21 @@
 object frmLazBiorhythms: TfrmLazBiorhythms
-  Left = 1282
+  Left = 1221
   Height = 400
-  Top = 157
+  Top = 188
   Width = 600
-  Caption = 'frmLazBiorhythms'
-  ClientHeight = 400
+  Caption = 'LazBiorhythms'
+  ClientHeight = 380
   ClientWidth = 600
   Constraints.MinHeight = 400
   Constraints.MinWidth = 600
   Font.Color = clMenu
+  Menu = MnMenuBio
+  OnClose = FormClose
   OnCreate = FormCreate
   LCLVersion = '1.8.2.0'
   object ChrtBiorhythms: TChart
     Left = -16
-    Height = 200
+    Height = 180
     Top = 0
     Width = 605
     AxisList = <    
@@ -88,7 +90,7 @@ object frmLazBiorhythms: TfrmLazBiorhythms
   object GroupBox1: TGroupBox
     Left = 8
     Height = 65
-    Top = 304
+    Top = 284
     Width = 573
     Anchors = [akLeft, akRight, akBottom]
     Caption = 'Birthdate'
@@ -119,9 +121,9 @@ object frmLazBiorhythms: TfrmLazBiorhythms
       ParentFont = False
     end
     object btnExit: TButton
-      Left = 488
+      Left = 487
       Height = 25
-      Top = 4
+      Top = 6
       Width = 75
       Caption = 'Exit'
       OnClick = btnExitClick
@@ -133,7 +135,7 @@ object frmLazBiorhythms: TfrmLazBiorhythms
     AnchorSideRight.Side = asrCenter
     Left = 280
     Height = 80
-    Top = 216
+    Top = 196
     Width = 16
     Anchors = [akBottom]
     BorderSpacing.Left = 10
@@ -145,7 +147,7 @@ object frmLazBiorhythms: TfrmLazBiorhythms
     AnchorSideRight.Control = Panel1
     Left = 8
     Height = 89
-    Top = 208
+    Top = 188
     Width = 262
     Anchors = [akLeft, akRight, akBottom]
     BorderSpacing.Right = 10
@@ -235,7 +237,7 @@ object frmLazBiorhythms: TfrmLazBiorhythms
     AnchorSideLeft.Side = asrBottom
     Left = 306
     Height = 89
-    Top = 208
+    Top = 188
     Width = 281
     Anchors = [akLeft, akRight, akBottom]
     BorderSpacing.Left = 10
@@ -340,5 +342,35 @@ object frmLazBiorhythms: TfrmLazBiorhythms
     SuppressPrevUnit = False
     left = 416
     top = 328
+  end
+  object MnMenuBio: TMainMenu
+    left = 285
+    top = 352
+    object MnIimFile: TMenuItem
+      Caption = 'File'
+      object MenuItmOptions: TMenuItem
+        Caption = 'Options'
+        OnClick = MenuItmOptionsClick
+      end
+      object MenuItmExit: TMenuItem
+        Caption = 'Exit'
+        OnClick = MenuItmExitClick
+      end
+    end
+    object MnItmHelp: TMenuItem
+      Caption = 'Help'
+      object MenuItmHelp: TMenuItem
+        Caption = 'Help'
+        OnClick = MenuItmHelpClick
+      end
+      object MenuItmLicence: TMenuItem
+        Caption = 'Licence'
+        OnClick = MenuItmLicenceClick
+      end
+      object MenuItmAbout: TMenuItem
+        Caption = 'About'
+        OnClick = MenuItmAboutClick
+      end
+    end
   end
 end

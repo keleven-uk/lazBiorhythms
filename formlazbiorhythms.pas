@@ -38,7 +38,8 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, TAGraph, TAIntervalSources, TASeries, Forms,
-  Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, EditBtn, dateutils;
+  Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, EditBtn, Menus, dateutils,
+  formhelp, formLicence, formAbout, formOptions, uOptions;
 
 type
 
@@ -81,12 +82,26 @@ type
     lblPhysical                 : TLabel;
     lblBirthdayInfo             : TLabel;
     DtEdtBirthDay               : TDateEdit;
+    MenuItmOptions: TMenuItem;
+    MenuItmExit: TMenuItem;
+    MnIimFile: TMenuItem;
+    MenuItmHelp: TMenuItem;
+    MenuItmLicence: TMenuItem;
+    MenuItmAbout: TMenuItem;
+    MnItmHelp: TMenuItem;
+    MnMenuBio: TMainMenu;
     Panel1                      : TPanel;
 
     procedure btnExitClick(Sender: TObject);
     procedure DtEdtBirthDayChange(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure checkBoxClick(Sender: TObject);
+    procedure MenuItmAboutClick(Sender: TObject);
+    procedure MenuItmExitClick(Sender: TObject);
+    procedure MenuItmHelpClick(Sender: TObject);
+    procedure MenuItmLicenceClick(Sender: TObject);
+    procedure MenuItmOptionsClick(Sender: TObject);
   private
     procedure plotChart;
     procedure clearSeries;
@@ -98,8 +113,9 @@ type
 
 var
   frmLazBiorhythms: TfrmLazBiorhythms;
+  userOptions     : Options;              //  used to hold user options.
   birthday        : TDate;
-
+  appStartTime    : int64;                //  used by formAbout to determine how long the app has been running.
 
 implementation
 
@@ -110,9 +126,19 @@ implementation
 procedure TfrmLazBiorhythms.FormCreate(Sender: TObject);
 {  Set up stuff at form create.    }
 begin
+  appStartTime := GetTickCount64;  //  tick count when application starts.
+
+  userOptions  := Options.Create;  // create options file as c:\Users\<user>\AppData\Local\LazBiorhythms\Options.xml
+
   lblBirthdayInfo.Caption := 'Plesae enter your birthday';
 
   colourStuff;
+end;
+
+procedure TfrmLazBiorhythms.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  userOptions.writeCurrentOptions;  // write out options file.
+  userOptions.Free;                 //  Release the user options.
 end;
 
 procedure TfrmLazBiorhythms.DtEdtBirthDayChange(Sender: TObject);
@@ -235,6 +261,34 @@ procedure TfrmLazBiorhythms.checkBoxClick(Sender: TObject);
 begin
   plotChart;
 end;
+//
+//........................................ File Menu ...........................
+//
+procedure TfrmLazBiorhythms.MenuItmOptionsClick(Sender: TObject);
+begin
+  frmOptions.ShowModal;
+end;
 
+procedure TfrmLazBiorhythms.MenuItmExitClick(Sender: TObject);
+begin
+  close;
+end;
+//
+//........................................ Help Menu ...........................
+//
+procedure TfrmLazBiorhythms.MenuItmHelpClick(Sender: TObject);
+begin
+  frmHelp.ShowModal;
+end;
+
+procedure TfrmLazBiorhythms.MenuItmLicenceClick(Sender: TObject);
+begin
+  frmLicence.ShowModal;
+end;
+
+procedure TfrmLazBiorhythms.MenuItmAboutClick(Sender: TObject);
+begin
+  frmAbout.ShowModal;
+end;
 end.
 

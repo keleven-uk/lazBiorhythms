@@ -15,6 +15,7 @@
       <UseVersionInfo Value="True"/>
       <MajorVersionNr Value="1"/>
       <BuildNr Value="2"/>
+      <StringTable OriginalFilename="LazBiorhythms" ProductName="LazBiorhythms"/>
     </VersionInfo>
     <BuildModes Count="1">
       <Item1 Name="Default" Default="True"/>
@@ -35,7 +36,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="2">
+    <Units Count="3">
       <Unit0>
         <Filename Value="LazBiorhythms.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -48,6 +49,11 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="formLazBiorhythms"/>
       </Unit1>
+      <Unit2>
+        <Filename Value="lazbiorhythmsuntils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="LazBiorhythmsUntils"/>
+      </Unit2>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

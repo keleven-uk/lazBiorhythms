@@ -19,3 +19,15 @@ Currently
 240 statements
 14.1% 
 
+
+Build 3
+
+Added pre-built forms for Help, Licence, About and Options.
+Added pre-built units for utils and uptions.
+Added menus to main form to call the above.
+
+Currently
+1348 lines of source code.
+649 statements
+18.5% 
+
