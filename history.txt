@@ -4,6 +4,18 @@ Initial import into git.
 Basic layout of form complete.
 basic programming code complete.
 
-The program accepts a birthday and draws the biorhythms.
+The program accepts a birthday and draws the Biorhythms.
 
 needs adding to and making more rubust.
+
+
+Build 2
+Changed the checkGroups for individual check boxes, mainly so that the text of each could match the colour of the line series.
+
+Added Primary and Secondary Biorhythms
+
+Currently
+262 lines of source code.
+240 statements
+14.1% 
+

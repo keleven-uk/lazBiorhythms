@@ -1,14 +1,32 @@
 unit formLazBiorhythms;
 
 {
+    A lazarus program to draw a persons Biorhythms
+    Copyright (C) <2018>  <Kevin Scott>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+}
+
+{
 Curve	Cycle Length
-Physical *	23 days
-Emotional *	28 days
-Intellectual *	33 days
+lnSrsPhysical *	23 days
+lnSrsEmotional *	28 days
+lnSrsIntellectual *	33 days
 Spiritual 	53 days
-Awareness	48 days
-Aesthetic	43 days
-Intuition	38 days
+lnSrsAwareness	48 days
+lnSrsAesthetic	43 days
+lnSrsIntuition	38 days
 
 * Primary curves
 }
@@ -27,32 +45,53 @@ type
   { TfrmLazBiorhythms }
 
   TfrmLazBiorhythms = class(TForm)
-    ChckGrpPrimaryRhythms: TCheckGroup;
-    ChckGrpSecondaryRhythms: TCheckGroup;
-    ChrtBiorhythms: TChart;
-    awareness: TLineSeries;
-    aesthetic: TLineSeries;
-    secondaryCombined: TLineSeries;
-    intuition: TLineSeries;
-    spiritial: TLineSeries;
-    todayMark: TBarSeries;
-    primaryCombined: TLineSeries;
-    intellectual: TLineSeries;
-    emotional: TLineSeries;
-    physical: TLineSeries;
+    btnExit: TButton;
+    chckBxPhysical              : TCheckBox;
+    chckBxIntellectual          : TCheckBox;
+    chckBxEmotional             : TCheckBox;
+    chckBxPrimaryCombined       : TCheckBox;
+    chckBxSpirtual              : TCheckBox;
+    chckBxAesthetic             : TCheckBox;
+    chckBxAwareness             : TCheckBox;
+    chckBxIntuition             : TCheckBox;
+    chckBxSecondaryCombined     : TCheckBox;
+    ChrtBiorhythms              : TChart;
     DateTimeIntervalChartSource1: TDateTimeIntervalChartSource;
-    DtEdtBirthDay: TDateEdit;
-    GroupBox1: TGroupBox;
-    lblBirthdayInfo: TLabel;
-    Panel1: TPanel;
-    procedure ChckGrpPrimaryRhythmsItemClick(Sender: TObject; Index: integer);
-    procedure ChckGrpSecondaryRhythmsItemClick(Sender: TObject; Index: integer);
+    lnSrsAwareness              : TLineSeries;
+    lnSrsAesthetic              : TLineSeries;
+    lnSrsSecondaryCombined      : TLineSeries;
+    lnSrsIntuition              : TLineSeries;
+    lnSrsSpiritial              : TLineSeries;
+    lnSrsPrimaryCombined        : TLineSeries;
+    lnSrsIntellectual           : TLineSeries;
+    lnSrsEmotional              : TLineSeries;
+    lnSrsPhysical               : TLineSeries;
+    lnSrsTodayMark              : TBarSeries;
+    GroupBox1                   : TGroupBox;
+    GroupBox2                   : TGroupBox;
+    GroupBox3                   : TGroupBox;
+    lblSecondaryCombined        : TLabel;
+    lblIntuition                : TLabel;
+    lblAesthetic                : TLabel;
+    lblAwareness                : TLabel;
+    lblSpirtual                 : TLabel;
+    lblCombined                 : TLabel;
+    lblEmotional                : TLabel;
+    lblIntellectual             : TLabel;
+    lblPhysical                 : TLabel;
+    lblBirthdayInfo             : TLabel;
+    DtEdtBirthDay               : TDateEdit;
+    Panel1                      : TPanel;
+
+    procedure btnExitClick(Sender: TObject);
     procedure DtEdtBirthDayChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure checkBoxClick(Sender: TObject);
   private
     procedure plotChart;
     procedure clearSeries;
-    procedure colourSeriesNames;
+    procedure colourStuff;
+
   public
 
   end;
@@ -60,7 +99,6 @@ type
 var
   frmLazBiorhythms: TfrmLazBiorhythms;
   birthday        : TDate;
-  seriesDrawn     : integer;
 
 
 implementation
@@ -70,96 +108,132 @@ implementation
 { TfrmLazBiorhythms }
 
 procedure TfrmLazBiorhythms.FormCreate(Sender: TObject);
+{  Set up stuff at form create.    }
 begin
   lblBirthdayInfo.Caption := 'Plesae enter your birthday';
-  seriesDrawn := 0;
+
+  colourStuff;
 end;
 
 procedure TfrmLazBiorhythms.DtEdtBirthDayChange(Sender: TObject);
+{  When a birthdate has been entered, draw chart.    }
 begin
-  birthday := DtEdtBirthDay.Date;
+  birthday                := DtEdtBirthDay.Date;
   lblBirthdayInfo.Caption := format('You have been alive %d days', [DaysBetween(today, birthday)]);
 
   plotChart;
 end;
 
-procedure TfrmLazBiorhythms.ChckGrpPrimaryRhythmsItemClick(Sender: TObject; Index: integer);
+procedure TfrmLazBiorhythms.btnExitClick(Sender: TObject);
+{  Close the app.    }
 begin
-  plotChart;
-end;
-
-procedure TfrmLazBiorhythms.ChckGrpSecondaryRhythmsItemClick(Sender: TObject; Index: integer);
-begin
-  plotChart;
+  close;
 end;
 
 procedure TfrmLazBiorhythms.plotChart;
 const
-  N = 60;
+  N = 60;                             //  number of days.
 var
-  i: Integer;
-  x: Double;
-  min: integer;
-  days: double;
-  sdate: TdateTime;
+  f         : Integer;
+  x         : Double;
+  min       : integer;
+  days      : double;
+  sdate     : TdateTime;
   daysAlive : integer;
-  h : double;
 begin
   clearSeries;
 
   daysAlive := DaysBetween(today, birthday);
-  min := daysAlive - 30;
+
+  min   := daysAlive - 30;        //  where to start the play today - 30 days.
   sdate := today;
   sdate := sdate - 30;
-  for i:=0 to N-1 do begin
-    x := MIN + i;
+
+  for f:=0 to N-1 do begin
+    x := MIN + f;
     days := 2 * PI * x;
 
-    if ChckGrpPrimaryRhythms.Checked[0] then
-      physical.AddXY(sdate, sin(days / 23));
-    if ChckGrpPrimaryRhythms.Checked[1] then
-      emotional.AddXY(sdate, sin(days / 28));
-    if ChckGrpPrimaryRhythms.Checked[2] then
-      intellectual.AddXY(sdate, sin(days / 33));
-    if ChckGrpPrimaryRhythms.Checked[3] then
-      primaryCombined.AddXY(sdate, sin(days / 23) + sin(days / 28) + sin(days / 33));
+    if chckBxPhysical.Checked then
+      lnSrsPhysical.AddXY(sdate, sin(days / 23));
+    if chckBxEmotional.Checked
+      then lnSrsEmotional.AddXY(sdate, sin(days / 28));
+    if chckBxIntellectual.Checked
+      then lnSrsIntellectual.AddXY(sdate, sin(days / 33));
+    if chckBxPrimaryCombined.Checked then
+      lnSrsPrimaryCombined.AddXY(sdate, sin(days / 23) + sin(days / 28) + sin(days / 33));
 
-    if ChckGrpSecondaryRhythms.Checked[0] then
-      spiritial.AddXY(sdate, sin(days / 53));
-    if ChckGrpSecondaryRhythms.Checked[1] then
-      awareness.AddXY(sdate, sin(days / 48));
-    if ChckGrpSecondaryRhythms.Checked[2] then
-      aesthetic.AddXY(sdate, sin(days / 43));
-    if ChckGrpSecondaryRhythms.Checked[3] then
-      intuition.AddXY(sdate, sin(days / 38));
-    if ChckGrpSecondaryRhythms.Checked[4] then
-      secondaryCombined.AddXY(sdate, sin(days / 53) + sin(days / 48) + sin(days / 43) + sin(days / 38));
+    if chckBxSpirtual.Checked then
+      lnSrsSpiritial.AddXY(sdate, sin(days / 53));
+    if chckBxAwareness.Checked then
+      lnSrsAwareness.AddXY(sdate, sin(days / 48));
+    if chckBxAesthetic.Checked then
+      lnSrsAesthetic.AddXY(sdate, sin(days / 43));
+    if chckBxIntuition.Checked then
+      lnSrsIntuition.AddXY(sdate, sin(days / 38));
+    if chckBxSecondaryCombined.Checked then
+      lnSrsSecondaryCombined.AddXY(sdate, sin(days / 53) + sin(days / 48) + sin(days / 43) + sin(days / 38));
 
     sdate := sdate + 1;
   end;
 
-  todayMark.AddXY(today,2.5);
+  lnSrsTodayMark.AddXY(today,2.5);
 
 end;
 
 procedure TfrmLazBiorhythms.clearSeries;
+{  Clears the chart's line series.    }
 begin
-  physical.Clear;
-  emotional.Clear;
-  intellectual.Clear;
-  primaryCombined.Clear;
-  todayMark.Clear;
+  lnSrsPhysical.Clear;
+  lnSrsEmotional.Clear;
+  lnSrsIntellectual.Clear;
+  lnSrsPrimaryCombined.Clear;
+  lnSrsTodayMark.Clear;
 
-  spiritial.Clear;
-  awareness.Clear;
-  aesthetic.Clear;
-  intuition.Clear;
-  secondaryCombined.Clear;
+  lnSrsSpiritial.Clear;
+  lnSrsAwareness.Clear;
+  lnSrsAesthetic.Clear;
+  lnSrsIntuition.Clear;
+  lnSrsSecondaryCombined.Clear;
 end;
 
-procedure TfrmLazBiorhythms.colourSeriesNames;
+procedure TfrmLazBiorhythms.colourStuff;
+{  Sets up default colours for the labels on line series.    }
 begin
 
+  lnSrsPhysical.SeriesColor := clRed;
+  lblPhysical.Font.Color    := clRed;
+
+  lnSrsIntellectual.SeriesColor := clBlue;
+  lblIntellectual.Font.Color    := clBlue;
+
+  lnSrsEmotional.SeriesColor := clGreen;
+  lblEmotional.Font.Color    := clGreen;
+
+  lnSrsPrimaryCombined.SeriesColor := clAqua;
+  lblCombined.Font.Color           := clAqua;
+
+  lnSrsSpiritial.SeriesColor := clMaroon;
+  lblSpirtual.Font.Color     := clMaroon;
+
+  lnSrsAwareness.SeriesColor := clFuchsia;
+  lblAwareness.Font.Color    := clFuchsia;
+
+  lnSrsAesthetic.SeriesColor := clTeal;
+  lblAesthetic.Font.Color    := clTeal;
+
+  lnSrsIntuition.SeriesColor := clSilver;
+  lblIntuition.Font.Color    := clSilver;
+
+  lnSrsSecondaryCombined.SeriesColor := clOlive;
+  lblSecondaryCombined.Font.Color    := clOlive;
+end;
+
+procedure TfrmLazBiorhythms.checkBoxClick(Sender: TObject);
+{  A generic event handler called whenever any of the checkboxes are clicked.
+   Just calls the plot routine i.e. re-draws if a series is added or removed.
+}
+begin
+  plotChart;
 end;
 
 end.
