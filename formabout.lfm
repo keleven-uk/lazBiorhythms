@@ -708,33 +708,33 @@ object frmAbout: TfrmAbout
       }
     end
     object lblProgrammer: TLabel
-      Left = 137
+      Left = 160
       Height = 13
       Top = 96
-      Width = 134
-      Caption = 'Kevin Scott  (c) 2012 - 2018'
+      Width = 100
+      Caption = 'Kevin Scott  (c) 2018'
       Font.Height = 13
       ParentColor = False
       ParentFont = False
     end
     object lblProgramDescription: TLabel
-      Left = 152
-      Height = 30
-      Top = 64
-      Width = 130
-      Caption = 'lazBiorhythms'
-      Font.Height = -21
+      Left = 144
+      Height = 21
+      Top = 56
+      Width = 144
+      Caption = 'A Biorhythms Plotter'
+      Font.Height = -16
       ParentColor = False
       ParentFont = False
     end
     object lblProgramName: TLabel
-      Left = 168
-      Height = 39
-      Top = 24
-      Width = 114
-      Caption = 'lblProgramName'
+      Left = 152
+      Height = 50
+      Top = 8
+      Width = 122
+      Caption = 'lazBiorhythms'
       Font.CharSet = ANSI_CHARSET
-      Font.Height = -21
+      Font.Height = -27
       Font.Name = 'Gabriola'
       Font.Pitch = fpVariable
       Font.Quality = fqDraft

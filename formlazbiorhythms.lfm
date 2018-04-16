@@ -1,11 +1,11 @@
 object frmLazBiorhythms: TfrmLazBiorhythms
-  Left = 1221
-  Height = 400
-  Top = 188
-  Width = 600
+  Left = 121
+  Height = 545
+  Top = -997
+  Width = 818
   Caption = 'LazBiorhythms'
-  ClientHeight = 380
-  ClientWidth = 600
+  ClientHeight = 525
+  ClientWidth = 818
   Constraints.MinHeight = 400
   Constraints.MinWidth = 600
   Font.Color = clMenu
@@ -15,9 +15,9 @@ object frmLazBiorhythms: TfrmLazBiorhythms
   LCLVersion = '1.8.2.0'
   object ChrtBiorhythms: TChart
     Left = -16
-    Height = 180
+    Height = 325
     Top = 0
-    Width = 605
+    Width = 823
     AxisList = <    
       item
         Marks.LabelBrush.Style = bsClear
@@ -44,19 +44,19 @@ object frmLazBiorhythms: TfrmLazBiorhythms
     )
     Anchors = [akTop, akLeft, akRight, akBottom]
     ParentColor = True
-    object lnSrsPhysical: TLineSeries
+    object lnSrsFirstUserPhysical: TLineSeries
       Title = 'Physical'
       LinePen.Color = clRed
     end
-    object lnSrsEmotional: TLineSeries
+    object lnSrsFirstUserEmotional: TLineSeries
       Title = 'emotional'
       LinePen.Color = clGreen
     end
-    object lnSrsIntellectual: TLineSeries
+    object lnSrsFirstUserIntellectual: TLineSeries
       Title = 'intellectual'
       LinePen.Color = clBlue
     end
-    object lnSrsPrimaryCombined: TLineSeries
+    object lnSrsFirstUserPrimaryCombined: TLineSeries
       Title = 'primaryCombined'
       LinePen.Color = clAqua
     end
@@ -66,76 +66,125 @@ object frmLazBiorhythms: TfrmLazBiorhythms
       BarWidthPercent = 20
       ZeroLevel = -2.5
     end
-    object lnSrsSpiritial: TLineSeries
+    object lnFirstUserSrsSpiritial: TLineSeries
       Title = 'spiritial'
       LinePen.Color = clMaroon
     end
-    object lnSrsAwareness: TLineSeries
+    object lnSrsFirstUserAwareness: TLineSeries
       Title = 'awareness'
       LinePen.Color = clFuchsia
     end
-    object lnSrsAesthetic: TLineSeries
+    object lnSrsFirstUserAesthetic: TLineSeries
       Title = 'aesthetic'
       LinePen.Color = clTeal
     end
-    object lnSrsIntuition: TLineSeries
+    object lnSrsFirstUserIntuition: TLineSeries
       Title = 'intuition'
       LinePen.Color = clSilver
     end
-    object lnSrsSecondaryCombined: TLineSeries
+    object lnSrsFirstUserSecondaryCombined: TLineSeries
       Title = 'secondaryCombined'
       LinePen.Color = clOlive
     end
   end
   object GroupBox1: TGroupBox
     Left = 8
-    Height = 65
-    Top = 284
-    Width = 573
+    Height = 91
+    Top = 429
+    Width = 799
     Anchors = [akLeft, akRight, akBottom]
     Caption = 'Birthdate'
-    ClientHeight = 45
-    ClientWidth = 569
+    ClientHeight = 71
+    ClientWidth = 795
     TabOrder = 1
-    object DtEdtBirthDay: TDateEdit
-      Left = 16
+    object DtEdtFirstBirthDay: TDateEdit
+      Left = 136
       Height = 23
-      Top = 8
+      Top = 10
       Width = 103
       CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
       DateOrder = doNone
       ButtonWidth = 23
       NumGlyphs = 1
+      Flat = True
       MaxLength = 0
-      OnChange = DtEdtBirthDayChange
+      OnChange = DtEdtFirstBirthDayChange
       TabOrder = 0
     end
-    object lblBirthdayInfo: TLabel
-      Left = 144
+    object lblFirstBirthdayInfo: TLabel
+      Left = 272
       Height = 21
-      Top = 10
-      Width = 102
-      Caption = 'lblBirthdayInfo'
+      Top = 12
+      Width = 132
+      Caption = 'lblFirstBirthdayInfo'
       Font.Height = -16
       ParentColor = False
       ParentFont = False
     end
     object btnExit: TButton
-      Left = 487
+      Left = 519
       Height = 25
-      Top = 6
+      Top = 8
       Width = 75
       Caption = 'Exit'
       OnClick = btnExitClick
       TabOrder = 1
     end
+    object chckBxFirstUser: TCheckBox
+      Left = 8
+      Height = 25
+      Top = 8
+      Width = 86
+      Caption = 'First User'
+      Font.Color = clMenu
+      Font.Height = -16
+      OnChange = chckBxFirstUserChange
+      ParentFont = False
+      TabOrder = 2
+    end
+    object chckBxSecondUser: TCheckBox
+      Left = 8
+      Height = 25
+      Top = 36
+      Width = 107
+      Caption = 'Second User'
+      Font.Color = clMenu
+      Font.Height = -16
+      OnChange = chckBxSecondUserChange
+      ParentFont = False
+      TabOrder = 3
+    end
+    object DtEdtSecondBirthDay: TDateEdit
+      Left = 136
+      Height = 23
+      Top = 36
+      Width = 103
+      CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+      DateOrder = doNone
+      ButtonWidth = 23
+      NumGlyphs = 1
+      Flat = True
+      MaxLength = 0
+      OnChange = DtEdtSecondBirthDayChange
+      TabOrder = 4
+    end
+    object lblSecondBirthdayInfo: TLabel
+      Left = 272
+      Height = 21
+      Top = 40
+      Width = 153
+      Caption = 'lblSecondBirthdayInfo'
+      Font.Height = -16
+      ParentColor = False
+      ParentFont = False
+    end
   end
   object Panel1: TPanel
     AnchorSideLeft.Side = asrCenter
     AnchorSideRight.Side = asrCenter
-    Left = 280
+    Left = 385
     Height = 80
-    Top = 196
+    Top = 341
     Width = 16
     Anchors = [akBottom]
     BorderSpacing.Left = 10
@@ -147,13 +196,13 @@ object frmLazBiorhythms: TfrmLazBiorhythms
     AnchorSideRight.Control = Panel1
     Left = 8
     Height = 89
-    Top = 188
-    Width = 262
+    Top = 333
+    Width = 367
     Anchors = [akLeft, akRight, akBottom]
     BorderSpacing.Right = 10
     Caption = 'Primary Biorhythms'
     ClientHeight = 69
-    ClientWidth = 258
+    ClientWidth = 363
     TabOrder = 3
     object chckBxPhysical: TCheckBox
       Left = 16
@@ -191,7 +240,7 @@ object frmLazBiorhythms: TfrmLazBiorhythms
       OnClick = checkBoxClick
       TabOrder = 3
     end
-    object lblPhysical: TLabel
+    object lblFirstUserPhysical: TLabel
       Left = 40
       Height = 15
       Top = 12
@@ -201,7 +250,7 @@ object frmLazBiorhythms: TfrmLazBiorhythms
       ParentColor = False
       ParentFont = False
     end
-    object lblIntellectual: TLabel
+    object lblFirstUserIntellectual: TLabel
       Left = 40
       Height = 15
       Top = 44
@@ -211,7 +260,7 @@ object frmLazBiorhythms: TfrmLazBiorhythms
       ParentColor = False
       ParentFont = False
     end
-    object lblEmotional: TLabel
+    object lblFirstUserEmotional: TLabel
       Left = 144
       Height = 15
       Top = 12
@@ -221,7 +270,7 @@ object frmLazBiorhythms: TfrmLazBiorhythms
       ParentColor = False
       ParentFont = False
     end
-    object lblCombined: TLabel
+    object lblFirstUserCombined: TLabel
       Left = 144
       Height = 15
       Top = 44
@@ -235,15 +284,15 @@ object frmLazBiorhythms: TfrmLazBiorhythms
   object GroupBox3: TGroupBox
     AnchorSideLeft.Control = Panel1
     AnchorSideLeft.Side = asrBottom
-    Left = 306
+    Left = 411
     Height = 89
-    Top = 188
-    Width = 281
+    Top = 333
+    Width = 394
     Anchors = [akLeft, akRight, akBottom]
     BorderSpacing.Left = 10
     Caption = 'Secondary Biorhythms'
     ClientHeight = 69
-    ClientWidth = 277
+    ClientWidth = 390
     TabOrder = 4
     object chckBxSpirtual: TCheckBox
       Left = 16
@@ -285,7 +334,7 @@ object frmLazBiorhythms: TfrmLazBiorhythms
       OnClick = checkBoxClick
       TabOrder = 4
     end
-    object lblSpirtual: TLabel
+    object lblFirstUserSpirtual: TLabel
       Left = 40
       Height = 15
       Top = 12
@@ -295,7 +344,7 @@ object frmLazBiorhythms: TfrmLazBiorhythms
       ParentColor = False
       ParentFont = False
     end
-    object lblAwareness: TLabel
+    object lblFirstUserAwareness: TLabel
       Left = 128
       Height = 15
       Top = 12
@@ -305,7 +354,7 @@ object frmLazBiorhythms: TfrmLazBiorhythms
       ParentColor = False
       ParentFont = False
     end
-    object lblAesthetic: TLabel
+    object lblFirstUserAesthetic: TLabel
       Left = 40
       Height = 15
       Top = 44
@@ -315,7 +364,7 @@ object frmLazBiorhythms: TfrmLazBiorhythms
       ParentColor = False
       ParentFont = False
     end
-    object lblIntuition: TLabel
+    object lblFirstUserIntuition: TLabel
       Left = 128
       Height = 15
       Top = 44
@@ -325,7 +374,7 @@ object frmLazBiorhythms: TfrmLazBiorhythms
       ParentColor = False
       ParentFont = False
     end
-    object lblSecondaryCombined: TLabel
+    object lblFirstUserSecondaryCombined: TLabel
       Left = 208
       Height = 15
       Top = 44
@@ -340,12 +389,12 @@ object frmLazBiorhythms: TfrmLazBiorhythms
     DateTimeFormat = 'DD/MM/YYYY'
     Steps = [dtsYear, dtsMonth, dtsDay]
     SuppressPrevUnit = False
-    left = 416
-    top = 328
+    left = 576
+    top = 432
   end
   object MnMenuBio: TMainMenu
-    left = 285
-    top = 352
+    left = 520
+    top = 432
     object MnIimFile: TMenuItem
       Caption = 'File'
       object MenuItmOptions: TMenuItem

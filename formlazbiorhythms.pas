@@ -20,13 +20,13 @@ unit formLazBiorhythms;
 
 {
 Curve	Cycle Length
-lnSrsPhysical *	23 days
-lnSrsEmotional *	28 days
-lnSrsIntellectual *	33 days
+lnSrsFirstUserPhysical *	23 days
+lnSrsFirstUserEmotional *	28 days
+lnSrsFirstUserIntellectual *	33 days
 Spiritual 	53 days
-lnSrsAwareness	48 days
-lnSrsAesthetic	43 days
-lnSrsIntuition	38 days
+lnSrsFirstUserAwareness	48 days
+lnSrsFirstUserAesthetic	43 days
+lnSrsFirstUserIntuition	38 days
 
 * Primary curves
 }
@@ -46,54 +46,61 @@ type
   { TfrmLazBiorhythms }
 
   TfrmLazBiorhythms = class(TForm)
-    btnExit: TButton;
-    chckBxPhysical              : TCheckBox;
-    chckBxIntellectual          : TCheckBox;
-    chckBxEmotional             : TCheckBox;
-    chckBxPrimaryCombined       : TCheckBox;
-    chckBxSpirtual              : TCheckBox;
-    chckBxAesthetic             : TCheckBox;
-    chckBxAwareness             : TCheckBox;
-    chckBxIntuition             : TCheckBox;
-    chckBxSecondaryCombined     : TCheckBox;
-    ChrtBiorhythms              : TChart;
-    DateTimeIntervalChartSource1: TDateTimeIntervalChartSource;
-    lnSrsAwareness              : TLineSeries;
-    lnSrsAesthetic              : TLineSeries;
-    lnSrsSecondaryCombined      : TLineSeries;
-    lnSrsIntuition              : TLineSeries;
-    lnSrsSpiritial              : TLineSeries;
-    lnSrsPrimaryCombined        : TLineSeries;
-    lnSrsIntellectual           : TLineSeries;
-    lnSrsEmotional              : TLineSeries;
-    lnSrsPhysical               : TLineSeries;
-    lnSrsTodayMark              : TBarSeries;
-    GroupBox1                   : TGroupBox;
-    GroupBox2                   : TGroupBox;
-    GroupBox3                   : TGroupBox;
-    lblSecondaryCombined        : TLabel;
-    lblIntuition                : TLabel;
-    lblAesthetic                : TLabel;
-    lblAwareness                : TLabel;
-    lblSpirtual                 : TLabel;
-    lblCombined                 : TLabel;
-    lblEmotional                : TLabel;
-    lblIntellectual             : TLabel;
-    lblPhysical                 : TLabel;
-    lblBirthdayInfo             : TLabel;
-    DtEdtBirthDay               : TDateEdit;
-    MenuItmOptions: TMenuItem;
-    MenuItmExit: TMenuItem;
-    MnIimFile: TMenuItem;
-    MenuItmHelp: TMenuItem;
-    MenuItmLicence: TMenuItem;
-    MenuItmAbout: TMenuItem;
-    MnItmHelp: TMenuItem;
-    MnMenuBio: TMainMenu;
-    Panel1                      : TPanel;
+    ChrtBiorhythms                 : TChart;
+    DateTimeIntervalChartSource1   : TDateTimeIntervalChartSource;
+    lnSrsFirstUserAwareness        : TLineSeries;
+    lnSrsFirstUserAesthetic        : TLineSeries;
+    lnSrsFirstUserSecondaryCombined: TLineSeries;
+    lnSrsFirstUserIntuition        : TLineSeries;
+    lnFirstUserSrsSpiritial        : TLineSeries;
+    lnSrsFirstUserPrimaryCombined  : TLineSeries;
+    lnSrsFirstUserIntellectual     : TLineSeries;
+    lnSrsFirstUserEmotional        : TLineSeries;
+    lnSrsFirstUserPhysical         : TLineSeries;
+    lnSrsTodayMark                 : TBarSeries;
+    btnExit                        : TButton;
+    GroupBox1                      : TGroupBox;
+    GroupBox2                      : TGroupBox;
+    GroupBox3                      : TGroupBox;
+    chckBxSecondUser               : TCheckBox;
+    chckBxPhysical                 : TCheckBox;
+    chckBxIntellectual             : TCheckBox;
+    chckBxEmotional                : TCheckBox;
+    chckBxPrimaryCombined          : TCheckBox;
+    chckBxSpirtual                 : TCheckBox;
+    chckBxAesthetic                : TCheckBox;
+    chckBxAwareness                : TCheckBox;
+    chckBxIntuition                : TCheckBox;
+    chckBxSecondaryCombined        : TCheckBox;
+    chckBxFirstUser                : TCheckBox;
+    lblFirstUserSecondaryCombined  : TLabel;
+    lblFirstUserIntuition          : TLabel;
+    lblFirstUserAesthetic          : TLabel;
+    lblFirstUserAwareness          : TLabel;
+    lblFirstUserSpirtual           : TLabel;
+    lblFirstUserCombined           : TLabel;
+    lblFirstUserEmotional          : TLabel;
+    lblFirstUserIntellectual       : TLabel;
+    lblFirstUserPhysical           : TLabel;
+    lblFirstBirthdayInfo           : TLabel;
+    lblSecondBirthdayInfo          : TLabel;
+    DtEdtFirstBirthDay             : TDateEdit;
+    DtEdtSecondBirthDay            : TDateEdit;
+    MenuItmOptions                 : TMenuItem;
+    MenuItmExit                    : TMenuItem;
+    MnIimFile                      : TMenuItem;
+    MenuItmHelp                    : TMenuItem;
+    MenuItmLicence                 : TMenuItem;
+    MenuItmAbout                   : TMenuItem;
+    MnItmHelp                      : TMenuItem;
+    MnMenuBio                      : TMainMenu;
+    Panel1                         : TPanel;
 
     procedure btnExitClick(Sender: TObject);
-    procedure DtEdtBirthDayChange(Sender: TObject);
+    procedure chckBxFirstUserChange(Sender: TObject);
+    procedure chckBxSecondUserChange(Sender: TObject);
+    procedure DtEdtFirstBirthDayChange(Sender: TObject);
+    procedure DtEdtSecondBirthDayChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure checkBoxClick(Sender: TObject);
@@ -103,8 +110,9 @@ type
     procedure MenuItmLicenceClick(Sender: TObject);
     procedure MenuItmOptionsClick(Sender: TObject);
   private
-    procedure plotChart;
+    procedure plotChart(birthDate: TDate);
     procedure clearSeries;
+    procedure plotSeries;
     procedure colourStuff;
 
   public
@@ -114,7 +122,6 @@ type
 var
   frmLazBiorhythms: TfrmLazBiorhythms;
   userOptions     : Options;              //  used to hold user options.
-  birthday        : TDate;
   appStartTime    : int64;                //  used by formAbout to determine how long the app has been running.
 
 implementation
@@ -130,9 +137,16 @@ begin
 
   userOptions  := Options.Create;  // create options file as c:\Users\<user>\AppData\Local\LazBiorhythms\Options.xml
 
-  lblBirthdayInfo.Caption := 'Plesae enter your birthday';
+  lblFirstBirthdayInfo.Caption  := 'Please enter your birthday';
+  lblSecondBirthdayInfo.Caption := 'Please enter your birthday';
 
-  colourStuff;
+  DtEdtFirstBirthDay.Date  := userOptions.Firstbirthdate;
+  DtEdtSecondBirthDay.Date := userOptions.Secondbirthdate;
+
+  chckBxFirstUser.Checked  := userOptions.useFirstUser;
+  chckBxSecondUser.Checked := userOptions.useSecondUser;
+
+  plotSeries
 end;
 
 procedure TfrmLazBiorhythms.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -141,13 +155,22 @@ begin
   userOptions.Free;                 //  Release the user options.
 end;
 
-procedure TfrmLazBiorhythms.DtEdtBirthDayChange(Sender: TObject);
-{  When a birthdate has been entered, draw chart.    }
+procedure TfrmLazBiorhythms.DtEdtFirstBirthDayChange(Sender: TObject);
+{  When a first birthdate has been entered, draw chart.    }
 begin
-  birthday                := DtEdtBirthDay.Date;
-  lblBirthdayInfo.Caption := format('You have been alive %d days', [DaysBetween(today, birthday)]);
+  userOptions.Firstbirthdate   := DtEdtFirstBirthDay.Date;
+  lblFirstBirthdayInfo.Caption := format('You have been alive %d days', [DaysBetween(today, userOptions.Firstbirthdate)]);
 
-  plotChart;
+  plotSeries
+end;
+
+procedure TfrmLazBiorhythms.DtEdtSecondBirthDayChange(Sender: TObject);
+{  When a second birthdate has been entered, draw chart.    }
+begin
+  userOptions.Secondbirthdate   := DtEdtSecondBirthDay.Date;
+  lblSecondBirthdayInfo.Caption := format('You have been alive %d days', [DaysBetween(today, userOptions.Secondbirthdate)]);
+
+  plotSeries
 end;
 
 procedure TfrmLazBiorhythms.btnExitClick(Sender: TObject);
@@ -156,7 +179,7 @@ begin
   close;
 end;
 
-procedure TfrmLazBiorhythms.plotChart;
+procedure TfrmLazBiorhythms.plotChart(birthDate: TDate);
 const
   N = 60;                             //  number of days.
 var
@@ -168,8 +191,9 @@ var
   daysAlive : integer;
 begin
   clearSeries;
+  colourStuff;
 
-  daysAlive := DaysBetween(today, birthday);
+  daysAlive := DaysBetween(today, birthDate);
 
   min   := daysAlive - 30;        //  where to start the play today - 30 days.
   sdate := today;
@@ -180,78 +204,90 @@ begin
     days := 2 * PI * x;
 
     if chckBxPhysical.Checked then
-      lnSrsPhysical.AddXY(sdate, sin(days / 23));
+      lnSrsFirstUserPhysical.AddXY(sdate, sin(days / 23));
     if chckBxEmotional.Checked
-      then lnSrsEmotional.AddXY(sdate, sin(days / 28));
+      then lnSrsFirstUserEmotional.AddXY(sdate, sin(days / 28));
     if chckBxIntellectual.Checked
-      then lnSrsIntellectual.AddXY(sdate, sin(days / 33));
+      then lnSrsFirstUserIntellectual.AddXY(sdate, sin(days / 33));
     if chckBxPrimaryCombined.Checked then
-      lnSrsPrimaryCombined.AddXY(sdate, sin(days / 23) + sin(days / 28) + sin(days / 33));
+      lnSrsFirstUserPrimaryCombined.AddXY(sdate, sin(days / 23) + sin(days / 28) + sin(days / 33));
 
     if chckBxSpirtual.Checked then
-      lnSrsSpiritial.AddXY(sdate, sin(days / 53));
+      lnFirstUserSrsSpiritial.AddXY(sdate, sin(days / 53));
     if chckBxAwareness.Checked then
-      lnSrsAwareness.AddXY(sdate, sin(days / 48));
+      lnSrsFirstUserAwareness.AddXY(sdate, sin(days / 48));
     if chckBxAesthetic.Checked then
-      lnSrsAesthetic.AddXY(sdate, sin(days / 43));
+      lnSrsFirstUserAesthetic.AddXY(sdate, sin(days / 43));
     if chckBxIntuition.Checked then
-      lnSrsIntuition.AddXY(sdate, sin(days / 38));
+      lnSrsFirstUserIntuition.AddXY(sdate, sin(days / 38));
     if chckBxSecondaryCombined.Checked then
-      lnSrsSecondaryCombined.AddXY(sdate, sin(days / 53) + sin(days / 48) + sin(days / 43) + sin(days / 38));
+      lnSrsFirstUserSecondaryCombined.AddXY(sdate, sin(days / 53) + sin(days / 48) + sin(days / 43) + sin(days / 38));
 
     sdate := sdate + 1;
   end;
 
   lnSrsTodayMark.AddXY(today,2.5);
 
+  DtEdtFirstBirthDay.Date  := userOptions.Firstbirthdate;
+  DtEdtSecondBirthDay.Date := userOptions.Secondbirthdate;
 end;
 
 procedure TfrmLazBiorhythms.clearSeries;
 {  Clears the chart's line series.    }
 begin
-  lnSrsPhysical.Clear;
-  lnSrsEmotional.Clear;
-  lnSrsIntellectual.Clear;
-  lnSrsPrimaryCombined.Clear;
+  lnSrsFirstUserPhysical.Clear;
+  lnSrsFirstUserEmotional.Clear;
+  lnSrsFirstUserIntellectual.Clear;
+  lnSrsFirstUserPrimaryCombined.Clear;
   lnSrsTodayMark.Clear;
 
-  lnSrsSpiritial.Clear;
-  lnSrsAwareness.Clear;
-  lnSrsAesthetic.Clear;
-  lnSrsIntuition.Clear;
-  lnSrsSecondaryCombined.Clear;
+  lnFirstUserSrsSpiritial.Clear;
+  lnSrsFirstUserAwareness.Clear;
+  lnSrsFirstUserAesthetic.Clear;
+  lnSrsFirstUserIntuition.Clear;
+  lnSrsFirstUserSecondaryCombined.Clear;
+end;
+
+procedure TfrmLazBiorhythms.plotSeries;
+begin
+  if userOptions.useFirstUser  then
+    plotChart(userOptions.Firstbirthdate)
+  else if userOptions.useSecondUser then
+    plotChart(userOptions.Secondbirthdate)
+  else
+    clearSeries;
 end;
 
 procedure TfrmLazBiorhythms.colourStuff;
 {  Sets up default colours for the labels on line series.    }
 begin
 
-  lnSrsPhysical.SeriesColor := clRed;
-  lblPhysical.Font.Color    := clRed;
+  lnSrsFirstUserPhysical.SeriesColor := userOptions.clrFirstUserPhysical;
+  lblFirstUserPhysical.Font.Color    := userOptions.clrFirstUserPhysical;
 
-  lnSrsIntellectual.SeriesColor := clBlue;
-  lblIntellectual.Font.Color    := clBlue;
+  lnSrsFirstUserIntellectual.SeriesColor := userOptions.clrFirstUserIntellectual;
+  lblFirstUserIntellectual.Font.Color    := userOptions.clrFirstUserIntellectual;
 
-  lnSrsEmotional.SeriesColor := clGreen;
-  lblEmotional.Font.Color    := clGreen;
+  lnSrsFirstUserEmotional.SeriesColor := userOptions.clrFirstUserEmotional;
+  lblFirstUserEmotional.Font.Color    := userOptions.clrFirstUserEmotional;
 
-  lnSrsPrimaryCombined.SeriesColor := clAqua;
-  lblCombined.Font.Color           := clAqua;
+  lnSrsFirstUserPrimaryCombined.SeriesColor := userOptions.clrFirstUserPriCombined;
+  lblFirstUserCombined.Font.Color           := userOptions.clrFirstUserPriCombined;
 
-  lnSrsSpiritial.SeriesColor := clMaroon;
-  lblSpirtual.Font.Color     := clMaroon;
+  lnFirstUserSrsSpiritial.SeriesColor := userOptions.clrFirstUserSpitual;
+  lblFirstUserSpirtual.Font.Color     := userOptions.clrFirstUserSpitual;
 
-  lnSrsAwareness.SeriesColor := clFuchsia;
-  lblAwareness.Font.Color    := clFuchsia;
+  lnSrsFirstUserAwareness.SeriesColor := userOptions.clrFirstUserAwareness;
+  lblFirstUserAwareness.Font.Color    := userOptions.clrFirstUserAwareness;
 
-  lnSrsAesthetic.SeriesColor := clTeal;
-  lblAesthetic.Font.Color    := clTeal;
+  lnSrsFirstUserAesthetic.SeriesColor := userOptions.clrFirstUserAesthetic;
+  lblFirstUserAesthetic.Font.Color    := userOptions.clrFirstUserAesthetic;
 
-  lnSrsIntuition.SeriesColor := clSilver;
-  lblIntuition.Font.Color    := clSilver;
+  lnSrsFirstUserIntuition.SeriesColor := userOptions.clrFirstUserIntuition;
+  lblFirstUserIntuition.Font.Color    := userOptions.clrFirstUserIntuition;
 
-  lnSrsSecondaryCombined.SeriesColor := clOlive;
-  lblSecondaryCombined.Font.Color    := clOlive;
+  lnSrsFirstUserSecondaryCombined.SeriesColor := userOptions.clrFirstUserSecCombined;
+  lblFirstUserSecondaryCombined.Font.Color    := userOptions.clrFirstUserSecCombined;
 end;
 
 procedure TfrmLazBiorhythms.checkBoxClick(Sender: TObject);
@@ -259,7 +295,23 @@ procedure TfrmLazBiorhythms.checkBoxClick(Sender: TObject);
    Just calls the plot routine i.e. re-draws if a series is added or removed.
 }
 begin
-  plotChart;
+  plotSeries
+end;
+//
+//........................................ Check Boxes .........................
+//
+procedure TfrmLazBiorhythms.chckBxFirstUserChange(Sender: TObject);
+begin
+  userOptions.useFirstUser := chckBxFirstUser.Checked;
+
+  plotSeries
+end;
+
+procedure TfrmLazBiorhythms.chckBxSecondUserChange(Sender: TObject);
+begin
+  userOptions.useSecondUser := chckBxSecondUser.Checked;
+
+  plotSeries
 end;
 //
 //........................................ File Menu ...........................
@@ -267,10 +319,15 @@ end;
 procedure TfrmLazBiorhythms.MenuItmOptionsClick(Sender: TObject);
 begin
   frmOptions.ShowModal;
+
+  //  in case something has changed.
+  colourStuff;
+  plotSeries
 end;
 
 procedure TfrmLazBiorhythms.MenuItmExitClick(Sender: TObject);
 begin
+  userOptions.writeCurrentOptions;
   close;
 end;
 //

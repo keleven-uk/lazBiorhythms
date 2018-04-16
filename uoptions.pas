@@ -49,17 +49,39 @@ type
       _productName     : string;
       _productVersion  : string;
 
-      _screenSave: boolean;           //  do we save Klock position or not.
-      _formTop   : integer;           //  the forms top left.
-      _formLeft  : integer;
+      _optionsName    : string;             //  full path to the options file.
+      _Firstbirthdate : TDateTime;          //  Birthday of First user.
+      _Secondbirthdate: TDateTime;          //  Birthday of Second user.
+      _useFirstUser   : boolean;
+      _useSecondUser  : boolean;
 
-      _optionsName: string;           //  full path to the options file.
+      //  Colours
+      _clrFirstUserPhysical    : TColor;
+      _clrFirstuserIntellectual: TColor;
+      _clrFirstUserEmotional   : TColor;
+      _clrFirstUserPriCombined : TColor;
+      _clrFirstUserSpitual     : TColor;
+      _clrFirstUserAesthetic   : TColor;
+      _clrFirstUserAwareness   : TColor;
+      _clrFirstUserIntuition   : TColor;
+      _clrFirstUserSecCombined : TColor;
+
+      _clrSecondUserPhysical    : TColor;
+      _clrSeconduserIntellectual: TColor;
+      _clrSecondUserEmotional   : TColor;
+      _clrSecondUserPriCombined : TColor;
+      _clrSecondUserSpitual     : TColor;
+      _clrSecondUserAesthetic   : TColor;
+      _clrSecondUserAwareness   : TColor;
+      _clrSecondUserIntuition   : TColor;
+      _clrSecondUserSecCombined : TColor;
 
       procedure checkDirectory;
       Function readChild(PassNode: TDOMNode;  name: string): string;
       Function readChildAttribute(PassNode: TDOMNode;  name: string; attribute: string): string;
       function writeStrChild(Doc: TXMLDocument; name: string; value: string): TDOMNode;
       function writeFontChild(Doc: TXMLDocument; name: string; value: Tfont): TDOMNode;
+      function writeDateChild(Doc: TXMLDocument; name: string; value: TDateTime): TDOMNode;
       function writeColChild(Doc: TXMLDocument; name: string; value: TColor): TDOMNode;
       function writeBolChild(Doc: TXMLDocument; name: string; value: boolean): TDOMNode;
       function writeIntChild(Doc: TXMLDocument; name: string; value: integer): TDOMNode;
@@ -67,21 +89,43 @@ type
       function writeIntChildAttribute(Doc: TXMLDocument; name: string; value1: integer; value2: integer): TDOMNode;
     public
       //  Global - file stuff
-      property Comments: String read _Comments write _Comments;
-      property companyName: String read _companyName write _companyName;
-      property fileDescription: String read _fileDescription write _fileDescription;
-      property fileVersion: String read _fileVersion write _fileVersion;
-      property InternalName: String read _InternalName write _InternalName;
-      property legalCopyright: String read _legalCopyright write _legalCopyright;
+      property Comments        : String read _Comments write _Comments;
+      property companyName     : String read _companyName write _companyName;
+      property fileDescription : String read _fileDescription write _fileDescription;
+      property fileVersion     : String read _fileVersion write _fileVersion;
+      property InternalName    : String read _InternalName write _InternalName;
+      property legalCopyright  : String read _legalCopyright write _legalCopyright;
       property originalFileName: String read _originalFileName write _originalFileName;
-      property productName: String read _productName write _productName;
-      property productVersion: String read _productVersion write _productVersion;
+      property productName     : String read _productName write _productName;
+      property productVersion  : String read _productVersion write _productVersion;
 
       //  Global - other stuff
-      property screenSave: boolean read _screenSave write _screenSave;
-      property formTop: integer read _formTop write _formTop;
-      property formLeft: integer read _formLeft write _formLeft;
-      property optionsName: string read _optionsName write _optionsName;
+      property optionsName     : string  read _optionsName write _optionsName;
+      property Firstbirthdate  : TDateTime read _Firstbirthdate write _Firstbirthdate;
+      property Secondbirthdate : TDateTime read _Secondbirthdate write _Secondbirthdate;
+      property useFirstUser    : boolean read _useFirstUser write _useFirstUser;
+      property useSecondUser   : boolean read _useSecondUser write _useSecondUser;
+
+      //  Colours
+      property clrFirstUserPhysical    : TColor read _clrFirstUserPhysical write _clrFirstUserPhysical;
+      property clrFirstuserIntellectual: TColor read _clrFirstuserIntellectual write _clrFirstuserIntellectual;
+      property clrFirstUserEmotional   : TColor read _clrFirstUserEmotional write _clrFirstUserEmotional;
+      property clrFirstUserPriCombined : TColor read _clrFirstUserPriCombined write _clrFirstUserPriCombined;
+      property clrFirstUserSpitual     : TColor read _clrFirstUserSpitual write _clrFirstUserSpitual;
+      property clrFirstUserAesthetic   : TColor read _clrFirstUserAesthetic write _clrFirstUserAesthetic;
+      property clrFirstUserAwareness   : TColor read _clrFirstUserAwareness write _clrFirstUserAwareness;
+      property clrFirstUserIntuition   : TColor read _clrFirstUserIntuition write _clrFirstUserIntuition;
+      property clrFirstUserSecCombined : TColor read _clrFirstUserSecCombined write _clrFirstUserSecCombined;
+
+      property clrSecondUserPhysical    : TColor read _clrSecondUserPhysical write _clrSecondUserPhysical;
+      property clrSeconduserIntellectual: TColor read _clrSeconduserIntellectual write _clrSeconduserIntellectual;
+      property clrSecondUserEmotional   : TColor read _clrSecondUserEmotional write _clrSecondUserEmotional;
+      property clrSecondUserPriCombined : TColor read _clrSecondUserPriCombined write _clrSecondUserPriCombined;
+      property clrSecondUserSpitual     : TColor read _clrSecondUserSpitual write _clrSecondUserSpitual;
+      property clrSecondUserAesthetic   : TColor read _clrSecondUserAesthetic write _clrSecondUserAesthetic;
+      property clrSecondUserAwareness   : TColor read _clrSecondUserAwareness write _clrSecondUserAwareness;
+      property clrSecondUserIntuition   : TColor read _clrSecondUserIntuition write _clrSecondUserIntuition;
+      property clrSecondUserSecCombined : TColor read _clrSecondUserSecCombined write _clrSecondUserSecCombined;
 
       constructor Create; overload;
       constructor Create(filename: String); overload;
@@ -211,10 +255,33 @@ implementation
   productVersion   := o.productVersion;
 
   //  Global - other stuff
-  optionsName := o.optionsName;
-  screenSave  := o.screenSave;
-  formTop     := o.formTop;
-  formLeft    := o.formLeft;
+  optionsName     := o.optionsName;
+  Firstbirthdate  := o.Firstbirthdate;
+  Secondbirthdate := o.Secondbirthdate;
+  useFirstUser    := o.useFirstUser;
+  useSecondUser   := o.useSecondUser;
+
+  //  Colours
+  _clrFirstUserPhysical     := o.clrFirstUserPhysical;
+  _clrFirstuserIntellectual := o.clrFirstuserIntellectual;
+  _clrFirstUserEmotional    := o.clrFirstUserEmotional;
+  _clrFirstUserPriCombined  := o.clrFirstUserPriCombined;
+  _clrFirstUserSpitual      := o.clrFirstUserSpitual;
+  _clrFirstUserAesthetic    := o.clrFirstUserAesthetic;
+  _clrFirstUserAwareness    := o.clrFirstUserAwareness;
+  _clrFirstUserIntuition    := o.clrFirstUserIntuition;
+  _clrFirstUserSecCombined  := o.clrFirstUserSecCombined;
+
+  _clrSecondUserPhysical     := o.clrSecondUserPhysical;
+  _clrSeconduserIntellectual := o.clrSeconduserIntellectual;
+  _clrSecondUserEmotional    := o.clrSecondUserEmotional;
+  _clrSecondUserPriCombined  := o.clrSecondUserPriCombined;
+  _clrSecondUserSpitual      := o.clrSecondUserSpitual;
+  _clrSecondUserAesthetic    := o.clrSecondUserAesthetic;
+  _clrSecondUserAwareness    := o.clrSecondUserAwareness;
+  _clrSecondUserIntuition    := o.clrSecondUserIntuition;
+  _clrSecondUserSecCombined  := o.clrSecondUserSecCombined;
+
   end;
 
   procedure Options.readOptions;
@@ -270,15 +337,60 @@ implementation
 
       if assigned(PassNode) then
       begin
-        rtn := readChild(PassNode, 'screenSave');
-        if rtn <> 'ERROR' then screenSave := StrToBool(rtn);
-        rtn := readChildAttribute(PassNode, 'formPosition', 'Top');
-        if rtn <> 'ERROR' then formTop := StrToInt(rtn);
-        rtn := readChildAttribute(PassNode, 'formPosition', 'Left');
-        if rtn <> 'ERROR' then formLeft := StrToInt(rtn);
-
         rtn := readChild(PassNode, 'optionsName');
         if rtn <> 'ERROR' then optionsName := ansistring(rtn);
+        rtn := readChild(PassNode, 'Firstbirthdate');
+        if rtn <> 'ERROR' then Firstbirthdate := strToDate(rtn);
+        rtn := readChild(PassNode, 'Secondbirthdate');
+        if rtn <> 'ERROR' then Secondbirthdate := strToDate(rtn);
+        rtn := readChild(PassNode, 'useFirstUser');
+        if rtn <> 'ERROR' then useFirstUser := strToBool(rtn);
+        rtn := readChild(PassNode, 'useSecondUser');
+        if rtn <> 'ERROR' then useSecondUser := strToBool(rtn);
+      end;
+
+      //  Colours
+      PassNode := Doc.DocumentElement.FindNode('Colours');
+
+      if assigned(PassNode) then
+      begin
+        rtn := readChild(PassNode, 'clrFirstUserPhysical');
+        if rtn <> 'ERROR' then clrFirstUserPhysical := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrFirstuserIntellectual');
+        if rtn <> 'ERROR' then clrFirstuserIntellectual := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrFirstUserEmotional');
+        if rtn <> 'ERROR' then clrFirstUserEmotional := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrFirstUserPriCombined');
+        if rtn <> 'ERROR' then clrFirstUserPriCombined := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrFirstUserSpitual');
+        if rtn <> 'ERROR' then clrFirstUserSpitual := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrFirstUserAesthetic');
+        if rtn <> 'ERROR' then clrFirstUserAesthetic := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrFirstUserAwareness');
+        if rtn <> 'ERROR' then clrFirstUserAwareness := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrFirstUserIntuition');
+        if rtn <> 'ERROR' then clrFirstUserIntuition := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrFirstUserSecCombined');
+        if rtn <> 'ERROR' then clrFirstUserSecCombined := StringToColor(rtn);
+
+        rtn := readChild(PassNode, 'clrSecondUserPhysical');
+        if rtn <> 'ERROR' then clrSecondUserPhysical := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrSeconduserIntellectual');
+        if rtn <> 'ERROR' then clrSeconduserIntellectual := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrSecondUserEmotional');
+        if rtn <> 'ERROR' then clrSecondUserEmotional := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrSecondUserPriCombined');
+        if rtn <> 'ERROR' then clrSecondUserPriCombined := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrSecondUserSpitual');
+        if rtn <> 'ERROR' then clrSecondUserSpitual := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrSecondUserAesthetic');
+        if rtn <> 'ERROR' then clrSecondUserAesthetic := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrSecondUserAwareness');
+        if rtn <> 'ERROR' then clrSecondUserAwareness := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrSecondUserIntuition');
+        if rtn <> 'ERROR' then clrSecondUserIntuition := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrSecondUserSecCombined');
+        if rtn <> 'ERROR' then clrSecondUserSecCombined := StringToColor(rtn);
       end;
 
     finally
@@ -310,9 +422,32 @@ implementation
     productName      := fvi.fileProductName;
     productVersion   := fvi.fileProductVersion;
 
-    screenSave := True;
-    formTop    := 100;              //  the forms top left.
-    formLeft   := 100;
+    // Global
+    Firstbirthdate  := encodeDate(1958, 04, 02);
+    Secondbirthdate := encodeDate(1960, 10, 11);
+    useFirstUser    := true;
+    useSecondUser   := true;
+
+    //  Colours
+    clrFirstUserPhysical     := clRed;
+    clrFirstuserIntellectual := clBlue;
+    clrFirstUserEmotional    := clGreen;
+    clrFirstUserPriCombined  := clAqua;
+    clrFirstUserSpitual      := clMaroon;
+    clrFirstUserAesthetic    := clTeal;
+    clrFirstUserAwareness    := clFuchsia;
+    clrFirstUserIntuition    := clSilver;
+    clrFirstUserSecCombined  := clOlive;
+
+    clrSecondUserPhysical     := clRed;
+    clrSeconduserIntellectual := clBlue;
+    clrSecondUserEmotional    := clGreen;
+    clrSecondUserPriCombined  := clAqua;
+    clrSecondUserSpitual      := clMaroon;
+    clrSecondUserAesthetic    := clTeal;
+    clrSecondUserAwareness    := clFuchsia;
+    clrSecondUserIntuition    := clSilver;
+    clrSecondUserSecCombined  := clOlive;
 
     writeCurrentOptions;
   end;
@@ -339,27 +474,55 @@ implementation
       Doc := TXMLDocument.Create;
 
       // Create a root node
-      RootNode := Doc.CreateElement('Klock');
+      RootNode := Doc.CreateElement('LazBiorhythms');
       Doc.Appendchild(RootNode);
       RootNode:= Doc.DocumentElement;
 
       //  Global
       ElementNode:=Doc.CreateElement('Global');
 
-      ElementNode.AppendChild(writeStrChild(doc, 'Comments', fvi.fileComments));
-      ElementNode.AppendChild(writeStrChild(doc, 'companyName', fvi.filecompanyName));
-      ElementNode.AppendChild(writeStrChild(doc, 'fileDescription', fvi.filefileDescription));
-      ElementNode.AppendChild(writeStrChild(doc, 'fileVersion', fvi.filefileVersion));
-      ElementNode.AppendChild(writeStrChild(doc, 'InternalName', fvi.fileInternalName));
-      ElementNode.AppendChild(writeStrChild(doc, 'legalCopyright', fvi.fileLegalCopyright));
+      ElementNode.AppendChild(writeStrChild(doc, 'Comments',         fvi.fileComments));
+      ElementNode.AppendChild(writeStrChild(doc, 'companyName',      fvi.filecompanyName));
+      ElementNode.AppendChild(writeStrChild(doc, 'fileDescription',  fvi.filefileDescription));
+      ElementNode.AppendChild(writeStrChild(doc, 'fileVersion',      fvi.filefileVersion));
+      ElementNode.AppendChild(writeStrChild(doc, 'InternalName',     fvi.fileInternalName));
+      ElementNode.AppendChild(writeStrChild(doc, 'legalCopyright',   fvi.fileLegalCopyright));
       ElementNode.AppendChild(writeStrChild(doc, 'originalFileName', fvi.fileOriginalFileName));
-      ElementNode.AppendChild(writeStrChild(doc, 'productName', fvi.fileProductName));
-      ElementNode.AppendChild(writeStrChild(doc, 'productVersion', fvi.fileProductVersion));
+      ElementNode.AppendChild(writeStrChild(doc, 'productName',      fvi.fileProductName));
+      ElementNode.AppendChild(writeStrChild(doc, 'productVersion',   fvi.fileProductVersion));
 
-      ElementNode.AppendChild(writeStrChild(doc, 'optionsName', optionsName));
+      ElementNode.AppendChild(writeStrChild(doc,  'optionsName',     optionsName));
+      ElementNode.AppendChild(writeDateChild(doc, 'Firstbirthdate',  Firstbirthdate));
+      ElementNode.AppendChild(writeDateChild(doc, 'Secondbirthdate', Secondbirthdate));
+      ElementNode.AppendChild(writeBolChild(doc,  'useFirstUser',    useFirstUser));
+      ElementNode.AppendChild(writeBolChild(doc,  'useSecondUser',   useSecondUser));
 
-      ElementNode.AppendChild(writeBolChild(doc, 'screenSave', screenSave));
-      ElementNode.AppendChild(writeIntChildAttribute(Doc, 'formPosition', formTop, formLeft));
+      RootNode.AppendChild(ElementNode);
+
+      //Colours
+      ElementNode := Doc.CreateElement('Colours');
+
+      ElementNode.AppendChild(writeColChild(doc, 'clrFirstUserPhysical',     clrFirstUserPhysical));
+      ElementNode.AppendChild(writeColChild(doc, 'clrFirstuserIntellectual', clrFirstuserIntellectual));
+      ElementNode.AppendChild(writeColChild(doc, 'clrFirstUserEmotional',    clrFirstUserEmotional));
+      ElementNode.AppendChild(writeColChild(doc, 'clrFirstUserPriCombined',  clrFirstUserPriCombined));
+      ElementNode.AppendChild(writeColChild(doc, 'clrFirstUserSpitual',      clrFirstUserSpitual));
+      ElementNode.AppendChild(writeColChild(doc, 'clrFirstUserAesthetic',    clrFirstUserAesthetic));
+      ElementNode.AppendChild(writeColChild(doc, 'clrFirstUserAwareness',    clrFirstUserAwareness));
+      ElementNode.AppendChild(writeColChild(doc, 'clrFirstUserIntuition',    clrFirstUserIntuition));
+      ElementNode.AppendChild(writeColChild(doc, 'clrFirstUserSecCombined',  clrFirstUserSecCombined));
+
+      ElementNode.AppendChild(writeColChild(doc, 'clrSecondUserPhysical',     clrSecondUserPhysical));
+      ElementNode.AppendChild(writeColChild(doc, 'clrSeconduserIntellectual', clrSeconduserIntellectual));
+      ElementNode.AppendChild(writeColChild(doc, 'clrSecondUserEmotional',    clrSecondUserEmotional));
+      ElementNode.AppendChild(writeColChild(doc, 'clrSecondUserPriCombined',  clrSecondUserPriCombined));
+      ElementNode.AppendChild(writeColChild(doc, 'clrSecondUserSpitual',      clrSecondUserSpitual));
+      ElementNode.AppendChild(writeColChild(doc, 'clrSecondUserAesthetic',    clrSecondUserAesthetic));
+      ElementNode.AppendChild(writeColChild(doc, 'clrSecondUserAwareness',    clrSecondUserAwareness));
+      ElementNode.AppendChild(writeColChild(doc, 'clrSecondUserIntuition',    clrSecondUserIntuition));
+      ElementNode.AppendChild(writeColChild(doc, 'clrSecondUserSecCombined',  clrSecondUserSecCombined));
+
+      RootNode.AppendChild(ElementNode);
 
       try
         // Save XML
@@ -470,6 +633,19 @@ implementation
     ItemNode.AppendChild(TextNode);
     result := ItemNode;
   end;
+
+  function Options.writeDateChild(Doc: TXMLDocument; name: string; value: TDateTime): TDOMNode;
+  {  Write a [date] value to a child node.    }
+  var
+    ItemNode: TDOMNode;
+    TextNode: TDOMNode;
+  begin
+    ItemNode := Doc.CreateElement(name);
+    TextNode := Doc.CreateTextNode(DateTimeToStr(value));
+    ItemNode.AppendChild(TextNode);
+    result := ItemNode;
+  end;
+
 
   function Options.writeBolChild(Doc: TXMLDocument; name: string; value: boolean): TDOMNode;
   {  Write a [boolean] value to a child node.    }

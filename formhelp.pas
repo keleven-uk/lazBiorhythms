@@ -56,7 +56,7 @@ begin
     end;
   end;
 
-  lblComments.Caption:= format('%s :: %s', [userOptions.productName,userOptions.Comments]);
+  lblComments.Caption:= format('%s', [userOptions.Comments]);
   lblCopyRight.Caption:= userOptions.legalCopyright;
   lblVersion.Caption:= format('%s Version :: %s', [userOptions.productName, userOptions.fileVersion]);
 end;

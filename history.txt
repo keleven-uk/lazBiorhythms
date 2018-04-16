@@ -31,3 +31,12 @@ Currently
 649 statements
 18.5% 
 
+Build 4
+
+Added user options for a second user.
+Added a second TDateEdit to enter birthdate of second user.
+
+Currently
+1752 lines of source code.
+956 statements
+16.3% 
