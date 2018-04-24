@@ -13,23 +13,24 @@ type
   { TfrmAbout }
 
   TfrmAbout = class(TForm)
-    btnAboutExit: TButton;
-    btnAboutMSInfo: TButton;
-    Image1: TImage;
-    lblProgramName: TLabel;
+    btnAboutExit         : TButton;
+    btnAboutMSInfo       : TButton;
+    Image1               : TImage;
+    lblProgramName       : TLabel;
     lblProgramDescription: TLabel;
-    lblProgrammer: TLabel;
-    lblSysUpTime: TLabel;
-    lblAppUpTime: TLabel;
-    lblSystemUpTime: TLabel;
-    lblApplicationUpTime: TLabel;
-    LstBxInfo: TListBox;
-    LstBxDiscSpace: TListBox;
-    Panel1: TPanel;
-    Panel2: TPanel;
-    Panel3: TPanel;
-    Panel4: TPanel;
-    tmrUpTime: TTimer;
+    lblProgrammer        : TLabel;
+    lblSysUpTime         : TLabel;
+    lblAppUpTime         : TLabel;
+    lblSystemUpTime      : TLabel;
+    lblApplicationUpTime : TLabel;
+    LstBxInfo            : TListBox;
+    LstBxDiscSpace       : TListBox;
+    Panel1               : TPanel;
+    Panel2               : TPanel;
+    Panel3               : TPanel;
+    Panel4               : TPanel;
+    tmrUpTime            : TTimer;
+
     procedure btnAboutExitClick(Sender: TObject);
     procedure btnAboutMSInfoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -74,11 +75,11 @@ var
   dskSize: string;
   dskFree: string;
   message: string;
-  i: integer;
+  i      : integer;
 begin
-  tmrUpTime.Enabled := True;
-  lblAppUpTime.Caption := getUpTime('Application');
-  lblSysUpTime.Caption := getUpTime('System');
+  tmrUpTime.Enabled     := True;
+  lblAppUpTime.Caption  := getUpTime('Application');
+  lblSysUpTime.Caption  := getUpTime('System');
   lblProgrammer.Caption := userOptions.legalCopyright;
 
   lstBxInfo.Items.add(userOptions.fileDescription);

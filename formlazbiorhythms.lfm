@@ -1,23 +1,23 @@
 object frmLazBiorhythms: TfrmLazBiorhythms
-  Left = 121
-  Height = 545
-  Top = -997
-  Width = 818
+  Left = 1068
+  Height = 525
+  Top = 174
+  Width = 840
   Caption = 'LazBiorhythms'
-  ClientHeight = 525
-  ClientWidth = 818
+  ClientHeight = 505
+  ClientWidth = 840
   Constraints.MinHeight = 400
-  Constraints.MinWidth = 600
+  Constraints.MinWidth = 840
   Font.Color = clMenu
   Menu = MnMenuBio
   OnClose = FormClose
   OnCreate = FormCreate
   LCLVersion = '1.8.2.0'
   object ChrtBiorhythms: TChart
-    Left = -16
-    Height = 325
+    Left = 0
+    Height = 305
     Top = 0
-    Width = 823
+    Width = 798
     AxisList = <    
       item
         Marks.LabelBrush.Style = bsClear
@@ -44,19 +44,19 @@ object frmLazBiorhythms: TfrmLazBiorhythms
     )
     Anchors = [akTop, akLeft, akRight, akBottom]
     ParentColor = True
-    object lnSrsFirstUserPhysical: TLineSeries
+    object lnSrsFirstPhysical: TLineSeries
       Title = 'Physical'
       LinePen.Color = clRed
     end
-    object lnSrsFirstUserEmotional: TLineSeries
+    object lnSrsFirstEmotional: TLineSeries
       Title = 'emotional'
       LinePen.Color = clGreen
     end
-    object lnSrsFirstUserIntellectual: TLineSeries
+    object lnSrsFirstIntellectual: TLineSeries
       Title = 'intellectual'
       LinePen.Color = clBlue
     end
-    object lnSrsFirstUserPrimaryCombined: TLineSeries
+    object lnSrsFirstPrimaryCombined: TLineSeries
       Title = 'primaryCombined'
       LinePen.Color = clAqua
     end
@@ -66,36 +66,63 @@ object frmLazBiorhythms: TfrmLazBiorhythms
       BarWidthPercent = 20
       ZeroLevel = -2.5
     end
-    object lnFirstUserSrsSpiritial: TLineSeries
+    object lnSrsFirstSpiritial: TLineSeries
       Title = 'spiritial'
       LinePen.Color = clMaroon
     end
-    object lnSrsFirstUserAwareness: TLineSeries
+    object lnSrsFirstAwareness: TLineSeries
       Title = 'awareness'
       LinePen.Color = clFuchsia
     end
-    object lnSrsFirstUserAesthetic: TLineSeries
+    object lnSrsFirstAesthetic: TLineSeries
       Title = 'aesthetic'
       LinePen.Color = clTeal
     end
-    object lnSrsFirstUserIntuition: TLineSeries
+    object lnSrsFirstIntuition: TLineSeries
       Title = 'intuition'
       LinePen.Color = clSilver
     end
-    object lnSrsFirstUserSecondaryCombined: TLineSeries
+    object lnSrsFirstSecondaryCombined: TLineSeries
       Title = 'secondaryCombined'
       LinePen.Color = clOlive
+    end
+    object lnSrsSecondPhysical: TLineSeries
+      Title = 'Physical'
+    end
+    object lnSrsSecondEmotional: TLineSeries
+      Title = 'Emotional'
+    end
+    object lnSrsSecondIntellectual: TLineSeries
+      Title = 'Intellectual'
+    end
+    object lnSrsSecondPrimaryCombined: TLineSeries
+      Title = 'PrimaryCombined'
+    end
+    object lnSrsSecondSpiritial: TLineSeries
+      Title = 'Spiritial'
+    end
+    object lnSrsSecondAwareness: TLineSeries
+      Title = 'Awareness'
+    end
+    object lnSrsSecondIntuition: TLineSeries
+      Title = 'Intuition'
+    end
+    object lnSrsSecondAesthetic: TLineSeries
+      Title = 'Aesthetic'
+    end
+    object lnSrsSecondSecondaryCombined: TLineSeries
+      Title = 'SecondaryCombined'
     end
   end
   object GroupBox1: TGroupBox
     Left = 8
     Height = 91
-    Top = 429
-    Width = 799
+    Top = 409
+    Width = 790
     Anchors = [akLeft, akRight, akBottom]
     Caption = 'Birthdate'
     ClientHeight = 71
-    ClientWidth = 795
+    ClientWidth = 786
     TabOrder = 1
     object DtEdtFirstBirthDay: TDateEdit
       Left = 136
@@ -122,9 +149,9 @@ object frmLazBiorhythms: TfrmLazBiorhythms
       ParentFont = False
     end
     object btnExit: TButton
-      Left = 519
+      Left = 693
       Height = 25
-      Top = 8
+      Top = 24
       Width = 75
       Caption = 'Exit'
       OnClick = btnExitClick
@@ -182,9 +209,9 @@ object frmLazBiorhythms: TfrmLazBiorhythms
   object Panel1: TPanel
     AnchorSideLeft.Side = asrCenter
     AnchorSideRight.Side = asrCenter
-    Left = 385
+    Left = 395
     Height = 80
-    Top = 341
+    Top = 321
     Width = 16
     Anchors = [akBottom]
     BorderSpacing.Left = 10
@@ -196,18 +223,18 @@ object frmLazBiorhythms: TfrmLazBiorhythms
     AnchorSideRight.Control = Panel1
     Left = 8
     Height = 89
-    Top = 333
-    Width = 367
+    Top = 313
+    Width = 377
     Anchors = [akLeft, akRight, akBottom]
     BorderSpacing.Right = 10
     Caption = 'Primary Biorhythms'
     ClientHeight = 69
-    ClientWidth = 363
+    ClientWidth = 373
     TabOrder = 3
-    object chckBxPhysical: TCheckBox
+    object chckBxFirstPhysical: TCheckBox
       Left = 16
       Height = 19
-      Top = 8
+      Top = 0
       Width = 20
       Color = clDefault
       Font.Color = clRed
@@ -216,67 +243,157 @@ object frmLazBiorhythms: TfrmLazBiorhythms
       ParentFont = False
       TabOrder = 0
     end
-    object chckBxIntellectual: TCheckBox
+    object chckBxFirstIntellectual: TCheckBox
       Left = 16
       Height = 19
-      Top = 40
+      Top = 24
       Width = 20
       OnClick = checkBoxClick
       TabOrder = 1
     end
-    object chckBxEmotional: TCheckBox
-      Left = 120
+    object chckBxFirstEmotional: TCheckBox
+      Left = 16
       Height = 19
-      Top = 8
+      Top = 48
       Width = 20
       OnClick = checkBoxClick
       TabOrder = 2
     end
-    object chckBxPrimaryCombined: TCheckBox
-      Left = 120
+    object chckBxFirstPrimaryCombined: TCheckBox
+      Left = 104
       Height = 19
-      Top = 40
+      Top = 24
       Width = 20
       OnClick = checkBoxClick
       TabOrder = 3
     end
-    object lblFirstUserPhysical: TLabel
-      Left = 40
+    object lblFirstPhysical: TLabel
+      Left = 36
       Height = 15
-      Top = 12
+      Top = 4
       Width = 43
       Caption = 'Physical'
       Font.Color = clRed
       ParentColor = False
       ParentFont = False
     end
-    object lblFirstUserIntellectual: TLabel
-      Left = 40
+    object lblFirstIntellectual: TLabel
+      Left = 36
       Height = 15
-      Top = 44
+      Top = 28
       Width = 58
       Caption = 'Intellectual'
       Font.Color = clBlue
       ParentColor = False
       ParentFont = False
     end
-    object lblFirstUserEmotional: TLabel
-      Left = 144
+    object lblFirstEmotional: TLabel
+      Left = 36
       Height = 15
-      Top = 12
+      Top = 48
       Width = 54
       Caption = 'Emotional'
       Font.Color = clGreen
       ParentColor = False
       ParentFont = False
     end
-    object lblFirstUserCombined: TLabel
-      Left = 144
+    object lblFirstCombined: TLabel
+      Left = 128
       Height = 15
-      Top = 44
+      Top = 28
       Width = 56
       Caption = 'Combined'
       Font.Color = clAqua
+      ParentColor = False
+      ParentFont = False
+    end
+    object chckBxFirstSpirtual: TCheckBox
+      Left = 192
+      Height = 19
+      Top = -8
+      Width = 20
+      OnClick = checkBoxClick
+      TabOrder = 4
+    end
+    object lblFirstSpirtual: TLabel
+      Left = 216
+      Height = 15
+      Top = -4
+      Width = 40
+      Caption = 'Spirtual'
+      Font.Color = clMaroon
+      ParentColor = False
+      ParentFont = False
+    end
+    object chckBxFirstAwareness: TCheckBox
+      Left = 192
+      Height = 19
+      Top = 10
+      Width = 20
+      OnClick = checkBoxClick
+      TabOrder = 5
+    end
+    object lblFirstAwareness: TLabel
+      Left = 216
+      Height = 15
+      Top = 14
+      Width = 56
+      Caption = 'Awareness'
+      Font.Color = clFuchsia
+      ParentColor = False
+      ParentFont = False
+    end
+    object chckBxFirstAesthetic: TCheckBox
+      Left = 192
+      Height = 19
+      Top = 46
+      Width = 20
+      OnClick = checkBoxClick
+      TabOrder = 6
+    end
+    object lblFirstAesthetic: TLabel
+      Left = 216
+      Height = 15
+      Top = 48
+      Width = 49
+      Caption = 'Aesthetic'
+      Font.Color = clTeal
+      ParentColor = False
+      ParentFont = False
+    end
+    object chckBxFirstIntuition: TCheckBox
+      Left = 192
+      Height = 19
+      Top = 28
+      Width = 20
+      OnClick = checkBoxClick
+      TabOrder = 7
+    end
+    object lblFirstIntuition: TLabel
+      Left = 216
+      Height = 15
+      Top = 32
+      Width = 45
+      Caption = 'Intuition'
+      Font.Color = clSilver
+      ParentColor = False
+      ParentFont = False
+    end
+    object chckBxFirstSecondaryCombined: TCheckBox
+      Left = 280
+      Height = 19
+      Top = 28
+      Width = 20
+      OnClick = checkBoxClick
+      TabOrder = 8
+    end
+    object lblFirstSecondaryCombined: TLabel
+      Left = 304
+      Height = 15
+      Top = 32
+      Width = 56
+      Caption = 'Combined'
+      Font.Color = clOlive
       ParentColor = False
       ParentFont = False
     end
@@ -284,103 +401,179 @@ object frmLazBiorhythms: TfrmLazBiorhythms
   object GroupBox3: TGroupBox
     AnchorSideLeft.Control = Panel1
     AnchorSideLeft.Side = asrBottom
-    Left = 411
+    Left = 421
     Height = 89
-    Top = 333
-    Width = 394
+    Top = 313
+    Width = 377
     Anchors = [akLeft, akRight, akBottom]
     BorderSpacing.Left = 10
     Caption = 'Secondary Biorhythms'
     ClientHeight = 69
-    ClientWidth = 390
+    ClientWidth = 373
     TabOrder = 4
-    object chckBxSpirtual: TCheckBox
+    object chckBxSecondPhysical: TCheckBox
       Left = 16
       Height = 19
-      Top = 8
+      Top = 0
       Width = 20
+      Color = clDefault
+      Font.Color = clRed
       OnClick = checkBoxClick
+      ParentColor = False
+      ParentFont = False
       TabOrder = 0
     end
-    object chckBxAesthetic: TCheckBox
+    object chckBxSecondIntellectual: TCheckBox
       Left = 16
       Height = 19
-      Top = 40
+      Top = 24
       Width = 20
       OnClick = checkBoxClick
       TabOrder = 1
     end
-    object chckBxAwareness: TCheckBox
-      Left = 104
+    object chckBxSecondEmotional: TCheckBox
+      Left = 16
       Height = 19
-      Top = 8
+      Top = 48
       Width = 20
       OnClick = checkBoxClick
       TabOrder = 2
     end
-    object chckBxIntuition: TCheckBox
+    object lblSecondEmotional: TLabel
+      Left = 36
+      Height = 15
+      Top = 48
+      Width = 54
+      Caption = 'Emotional'
+      Font.Color = clGreen
+      ParentColor = False
+      ParentFont = False
+    end
+    object lblSecondIntellectual: TLabel
+      Left = 36
+      Height = 15
+      Top = 28
+      Width = 58
+      Caption = 'Intellectual'
+      Font.Color = clBlue
+      ParentColor = False
+      ParentFont = False
+    end
+    object lblSecondPhysical: TLabel
+      Left = 36
+      Height = 15
+      Top = 4
+      Width = 43
+      Caption = 'Physical'
+      Font.Color = clRed
+      ParentColor = False
+      ParentFont = False
+    end
+    object chckBxSecondPrimaryCombined: TCheckBox
       Left = 104
       Height = 19
-      Top = 40
+      Top = 24
       Width = 20
       OnClick = checkBoxClick
       TabOrder = 3
     end
-    object chckBxSecondaryCombined: TCheckBox
-      Left = 184
+    object lblSecondCombined: TLabel
+      Left = 128
+      Height = 15
+      Top = 28
+      Width = 56
+      Caption = 'Combined'
+      Font.Color = clAqua
+      ParentColor = False
+      ParentFont = False
+    end
+    object chckBxSecondSpirtual: TCheckBox
+      Left = 192
       Height = 19
-      Top = 40
+      Top = 0
       Width = 20
       OnClick = checkBoxClick
       TabOrder = 4
     end
-    object lblFirstUserSpirtual: TLabel
-      Left = 40
-      Height = 15
-      Top = 12
-      Width = 40
-      Caption = 'Spirtual'
-      Font.Color = clMaroon
-      ParentColor = False
-      ParentFont = False
+    object chckBxSecondAwareness: TCheckBox
+      Left = 192
+      Height = 19
+      Top = 10
+      Width = 20
+      OnClick = checkBoxClick
+      TabOrder = 5
     end
-    object lblFirstUserAwareness: TLabel
-      Left = 128
-      Height = 15
-      Top = 12
-      Width = 56
-      Caption = 'Awareness'
-      Font.Color = clFuchsia
-      ParentColor = False
-      ParentFont = False
+    object chckBxSecondIntuition: TCheckBox
+      Left = 192
+      Height = 19
+      Top = 28
+      Width = 20
+      OnClick = checkBoxClick
+      TabOrder = 6
     end
-    object lblFirstUserAesthetic: TLabel
-      Left = 40
+    object chckBxSecondAesthetic: TCheckBox
+      Left = 192
+      Height = 19
+      Top = 46
+      Width = 20
+      OnClick = checkBoxClick
+      TabOrder = 7
+    end
+    object lblSecondAesthetic: TLabel
+      Left = 216
       Height = 15
-      Top = 44
+      Top = 48
       Width = 49
       Caption = 'Aesthetic'
       Font.Color = clTeal
       ParentColor = False
       ParentFont = False
     end
-    object lblFirstUserIntuition: TLabel
-      Left = 128
+    object lblSecondAwareness: TLabel
+      Left = 216
       Height = 15
-      Top = 44
-      Width = 45
-      Caption = 'Intuition'
-      Font.Color = clSilver
+      Top = 16
+      Width = 56
+      Caption = 'Awareness'
+      Font.Color = clFuchsia
       ParentColor = False
       ParentFont = False
     end
-    object lblFirstUserSecondaryCombined: TLabel
-      Left = 208
+    object lblSecondSpirtual: TLabel
+      Left = 216
       Height = 15
-      Top = 44
+      Top = 0
+      Width = 40
+      Caption = 'Spirtual'
+      Font.Color = clMaroon
+      ParentColor = False
+      ParentFont = False
+    end
+    object lblSecondSecondaryCombined: TLabel
+      Left = 304
+      Height = 15
+      Top = 32
       Width = 56
       Caption = 'Combined'
       Font.Color = clOlive
+      ParentColor = False
+      ParentFont = False
+    end
+    object chckBxSecondSecondaryCombined: TCheckBox
+      Left = 280
+      Height = 19
+      Top = 28
+      Width = 20
+      OnClick = checkBoxClick
+      TabOrder = 8
+    end
+    object lblSecondIntuition: TLabel
+      Left = 216
+      Height = 15
+      Top = 32
+      Width = 45
+      Caption = 'Intuition'
+      Font.Color = clSilver
       ParentColor = False
       ParentFont = False
     end

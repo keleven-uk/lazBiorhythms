@@ -14,8 +14,8 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <MajorVersionNr Value="1"/>
-      <BuildNr Value="4"/>
-      <StringTable Comments="conatct :: lazBiorhythms&lt;at>keleven.co.uk" CompanyName="www.keleven.co.uk" FileDescription="A lazarus program to draw a persons Biorhythms" InternalName="lazBiorhythms" LegalCopyright="(c) Kevin Scott  2018" OriginalFilename="lazBiorhythms" ProductName="lazBiorhythms"/>
+      <BuildNr Value="5"/>
+      <StringTable Comments="conatct :: lazBiorhythms&lt;at>keleven.co.uk" CompanyName="www.keleven.co.uk" FileDescription="A lazarus program to draw a persons Biorhythms" InternalName="lazBiorhythms" LegalCopyright="(c) Kevin Scott  2018" OriginalFilename="lazBiorhythms" ProductName="lazBiorhythms" ProductVersion="1.0.0.45"/>
     </VersionInfo>
     <BuildModes Count="1">
       <Item1 Name="Default" Default="True"/>
