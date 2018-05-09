@@ -56,25 +56,27 @@ type
       _useSecondUser  : boolean;
 
       //  Colours
-      _clrFirstUserPhysical    : TColor;
-      _clrFirstuserIntellectual: TColor;
-      _clrFirstUserEmotional   : TColor;
-      _clrFirstUserPriCombined : TColor;
-      _clrFirstUserSpitual     : TColor;
-      _clrFirstUserAesthetic   : TColor;
-      _clrFirstUserAwareness   : TColor;
-      _clrFirstUserIntuition   : TColor;
-      _clrFirstUserSecCombined : TColor;
+      _clrFirstPhysical    : TColor;
+      _clrFirstIntellectual: TColor;
+      _clrFirstEmotional   : TColor;
+      _clrFirstPriCombined : TColor;
+      _clrFirstSpitual     : TColor;
+      _clrFirstAesthetic   : TColor;
+      _clrFirstAwareness   : TColor;
+      _clrFirstIntuition   : TColor;
+      _clrFirstSecCombined : TColor;
+      _clrFirstOverall     : TColor;
 
-      _clrSecondUserPhysical    : TColor;
-      _clrSeconduserIntellectual: TColor;
-      _clrSecondUserEmotional   : TColor;
-      _clrSecondUserPriCombined : TColor;
-      _clrSecondUserSpitual     : TColor;
-      _clrSecondUserAesthetic   : TColor;
-      _clrSecondUserAwareness   : TColor;
-      _clrSecondUserIntuition   : TColor;
-      _clrSecondUserSecCombined : TColor;
+      _clrSecondPhysical    : TColor;
+      _clrSecondIntellectual: TColor;
+      _clrSecondEmotional   : TColor;
+      _clrSecondPriCombined : TColor;
+      _clrSecondSpitual     : TColor;
+      _clrSecondAesthetic   : TColor;
+      _clrSecondAwareness   : TColor;
+      _clrSecondIntuition   : TColor;
+      _clrSecondSecCombined : TColor;
+      _clrSecondOverall     : TColor;
 
       procedure checkDirectory;
       Function readChild(PassNode: TDOMNode;  name: string): string;
@@ -89,43 +91,45 @@ type
       function writeIntChildAttribute(Doc: TXMLDocument; name: string; value1: integer; value2: integer): TDOMNode;
     public
       //  Global - file stuff
-      property Comments        : String read _Comments write _Comments;
-      property companyName     : String read _companyName write _companyName;
-      property fileDescription : String read _fileDescription write _fileDescription;
-      property fileVersion     : String read _fileVersion write _fileVersion;
-      property InternalName    : String read _InternalName write _InternalName;
-      property legalCopyright  : String read _legalCopyright write _legalCopyright;
+      property Comments        : String read _Comments         write _Comments;
+      property companyName     : String read _companyName      write _companyName;
+      property fileDescription : String read _fileDescription  write _fileDescription;
+      property fileVersion     : String read _fileVersion      write _fileVersion;
+      property InternalName    : String read _InternalName     write _InternalName;
+      property legalCopyright  : String read _legalCopyright   write _legalCopyright;
       property originalFileName: String read _originalFileName write _originalFileName;
-      property productName     : String read _productName write _productName;
-      property productVersion  : String read _productVersion write _productVersion;
+      property productName     : String read _productName      write _productName;
+      property productVersion  : String read _productVersion   write _productVersion;
 
       //  Global - other stuff
-      property optionsName     : string  read _optionsName write _optionsName;
-      property Firstbirthdate  : TDateTime read _Firstbirthdate write _Firstbirthdate;
+      property optionsName     : string    read _optionsName     write _optionsName;
+      property Firstbirthdate  : TDateTime read _Firstbirthdate  write _Firstbirthdate;
       property Secondbirthdate : TDateTime read _Secondbirthdate write _Secondbirthdate;
-      property useFirstUser    : boolean read _useFirstUser write _useFirstUser;
-      property useSecondUser   : boolean read _useSecondUser write _useSecondUser;
+      property useFirstUser    : boolean   read _useFirstUser    write _useFirstUser;
+      property useSecondUser   : boolean   read _useSecondUser   write _useSecondUser;
 
       //  Colours
-      property clrFirstUserPhysical    : TColor read _clrFirstUserPhysical write _clrFirstUserPhysical;
-      property clrFirstuserIntellectual: TColor read _clrFirstuserIntellectual write _clrFirstuserIntellectual;
-      property clrFirstUserEmotional   : TColor read _clrFirstUserEmotional write _clrFirstUserEmotional;
-      property clrFirstUserPriCombined : TColor read _clrFirstUserPriCombined write _clrFirstUserPriCombined;
-      property clrFirstUserSpitual     : TColor read _clrFirstUserSpitual write _clrFirstUserSpitual;
-      property clrFirstUserAesthetic   : TColor read _clrFirstUserAesthetic write _clrFirstUserAesthetic;
-      property clrFirstUserAwareness   : TColor read _clrFirstUserAwareness write _clrFirstUserAwareness;
-      property clrFirstUserIntuition   : TColor read _clrFirstUserIntuition write _clrFirstUserIntuition;
-      property clrFirstUserSecCombined : TColor read _clrFirstUserSecCombined write _clrFirstUserSecCombined;
+      property clrFirstPhysical    : TColor read _clrFirstPhysical     write _clrFirstPhysical;
+      property clrFirstIntellectual: TColor read _clrFirstIntellectual write _clrFirstIntellectual;
+      property clrFirstEmotional   : TColor read _clrFirstEmotional    write _clrFirstEmotional;
+      property clrFirstPriCombined : TColor read _clrFirstPriCombined  write _clrFirstPriCombined;
+      property clrFirstSpitual     : TColor read _clrFirstSpitual      write _clrFirstSpitual;
+      property clrFirstAesthetic   : TColor read _clrFirstAesthetic    write _clrFirstAesthetic;
+      property clrFirstAwareness   : TColor read _clrFirstAwareness    write _clrFirstAwareness;
+      property clrFirstIntuition   : TColor read _clrFirstIntuition    write _clrFirstIntuition;
+      property clrFirstSecCombined : TColor read _clrFirstSecCombined  write _clrFirstSecCombined;
+      property clrFirstOverall     : TColor read _clrFirstOverall      write _clrFirstOverall;
 
-      property clrSecondUserPhysical    : TColor read _clrSecondUserPhysical write _clrSecondUserPhysical;
-      property clrSeconduserIntellectual: TColor read _clrSeconduserIntellectual write _clrSeconduserIntellectual;
-      property clrSecondUserEmotional   : TColor read _clrSecondUserEmotional write _clrSecondUserEmotional;
-      property clrSecondUserPriCombined : TColor read _clrSecondUserPriCombined write _clrSecondUserPriCombined;
-      property clrSecondUserSpitual     : TColor read _clrSecondUserSpitual write _clrSecondUserSpitual;
-      property clrSecondUserAesthetic   : TColor read _clrSecondUserAesthetic write _clrSecondUserAesthetic;
-      property clrSecondUserAwareness   : TColor read _clrSecondUserAwareness write _clrSecondUserAwareness;
-      property clrSecondUserIntuition   : TColor read _clrSecondUserIntuition write _clrSecondUserIntuition;
-      property clrSecondUserSecCombined : TColor read _clrSecondUserSecCombined write _clrSecondUserSecCombined;
+      property clrSecondPhysical    : TColor read _clrSecondPhysical     write _clrSecondPhysical;
+      property clrSecondIntellectual: TColor read _clrSecondIntellectual write _clrSecondIntellectual;
+      property clrSecondEmotional   : TColor read _clrSecondEmotional    write _clrSecondEmotional;
+      property clrSecondPriCombined : TColor read _clrSecondPriCombined  write _clrSecondPriCombined;
+      property clrSecondSpitual     : TColor read _clrSecondSpitual      write _clrSecondSpitual;
+      property clrSecondAesthetic   : TColor read _clrSecondAesthetic    write _clrSecondAesthetic;
+      property clrSecondAwareness   : TColor read _clrSecondAwareness    write _clrSecondAwareness;
+      property clrSecondIntuition   : TColor read _clrSecondIntuition    write _clrSecondIntuition;
+      property clrSecondSecCombined : TColor read _clrSecondSecCombined  write _clrSecondSecCombined;
+      property clrSecondOverall     : TColor read _clrSecondOverall      write _clrSecondOverall;
 
       constructor Create; overload;
       constructor Create(filename: String); overload;
@@ -146,26 +150,26 @@ type
   }
 
     private
-      _comments: String;
-      _companyName: String;
-      _fileDescription: String;
-      _fileVersion: String;
-      _InternalName: String;
-      _legalCopyright: String;
+      _comments        : String;
+      _companyName     : String;
+      _fileDescription : String;
+      _fileVersion     : String;
+      _InternalName    : String;
+      _legalCopyright  : String;
       _originalFileName: String;
-      _productName: String;
-      _productVersion: String;
+      _productName     : String;
+      _productVersion  : String;
 
     public
-      property fileComments: String read _comments write _comments;
-      property fileCompanyName: String read _companyName write _companyName;
-      property fileFileDescription: String read _fileDescription write _fileDescription;
-      property fileFileVersion: String read _fileVersion write _fileVersion;
-      property fileInternalName: String read _InternalName write _InternalName;
-      property fileLegalCopyright: String read _legalCopyright write _legalCopyright;
+      property fileComments: String         read _comments         write _comments;
+      property fileCompanyName: String      read _companyName      write _companyName;
+      property fileFileDescription: String  read _fileDescription  write _fileDescription;
+      property fileFileVersion: String      read _fileVersion      write _fileVersion;
+      property fileInternalName: String     read _InternalName     write _InternalName;
+      property fileLegalCopyright: String   read _legalCopyright   write _legalCopyright;
       property fileOriginalFileName: String read _originalFileName write _originalFileName;
-      property fileProductName: String read _productName write _productName;
-      property fileProductVersion: String read _productVersion write _productVersion;
+      property fileProductName: String      read _productName      write _productName;
+      property fileProductVersion: String   read _productVersion   write _productVersion;
 
       procedure GetFileInfo;
   end;
@@ -262,25 +266,27 @@ implementation
   useSecondUser   := o.useSecondUser;
 
   //  Colours
-  _clrFirstUserPhysical     := o.clrFirstUserPhysical;
-  _clrFirstuserIntellectual := o.clrFirstuserIntellectual;
-  _clrFirstUserEmotional    := o.clrFirstUserEmotional;
-  _clrFirstUserPriCombined  := o.clrFirstUserPriCombined;
-  _clrFirstUserSpitual      := o.clrFirstUserSpitual;
-  _clrFirstUserAesthetic    := o.clrFirstUserAesthetic;
-  _clrFirstUserAwareness    := o.clrFirstUserAwareness;
-  _clrFirstUserIntuition    := o.clrFirstUserIntuition;
-  _clrFirstUserSecCombined  := o.clrFirstUserSecCombined;
+  _clrFirstPhysical     := o.clrFirstPhysical;
+  _clrFirstIntellectual := o.clrFirstIntellectual;
+  _clrFirstEmotional    := o.clrFirstEmotional;
+  _clrFirstPriCombined  := o.clrFirstPriCombined;
+  _clrFirstSpitual      := o.clrFirstSpitual;
+  _clrFirstAesthetic    := o.clrFirstAesthetic;
+  _clrFirstAwareness    := o.clrFirstAwareness;
+  _clrFirstIntuition    := o.clrFirstIntuition;
+  _clrFirstSecCombined  := o.clrFirstSecCombined;
+  _clrFirstOverall      := o.clrFirstOverall;
 
-  _clrSecondUserPhysical     := o.clrSecondUserPhysical;
-  _clrSeconduserIntellectual := o.clrSeconduserIntellectual;
-  _clrSecondUserEmotional    := o.clrSecondUserEmotional;
-  _clrSecondUserPriCombined  := o.clrSecondUserPriCombined;
-  _clrSecondUserSpitual      := o.clrSecondUserSpitual;
-  _clrSecondUserAesthetic    := o.clrSecondUserAesthetic;
-  _clrSecondUserAwareness    := o.clrSecondUserAwareness;
-  _clrSecondUserIntuition    := o.clrSecondUserIntuition;
-  _clrSecondUserSecCombined  := o.clrSecondUserSecCombined;
+  _clrSecondPhysical     := o.clrSecondPhysical;
+  _clrSecondIntellectual := o.clrSecondIntellectual;
+  _clrSecondEmotional    := o.clrSecondEmotional;
+  _clrSecondPriCombined  := o.clrSecondPriCombined;
+  _clrSecondSpitual      := o.clrSecondSpitual;
+  _clrSecondAesthetic    := o.clrSecondAesthetic;
+  _clrSecondAwareness    := o.clrSecondAwareness;
+  _clrSecondIntuition    := o.clrSecondIntuition;
+  _clrSecondSecCombined  := o.clrSecondSecCombined;
+  _clrSecondOverall      := o.clrSecondOverall;
 
   end;
 
@@ -354,43 +360,47 @@ implementation
 
       if assigned(PassNode) then
       begin
-        rtn := readChild(PassNode, 'clrFirstUserPhysical');
-        if rtn <> 'ERROR' then clrFirstUserPhysical := StringToColor(rtn);
-        rtn := readChild(PassNode, 'clrFirstuserIntellectual');
-        if rtn <> 'ERROR' then clrFirstuserIntellectual := StringToColor(rtn);
-        rtn := readChild(PassNode, 'clrFirstUserEmotional');
-        if rtn <> 'ERROR' then clrFirstUserEmotional := StringToColor(rtn);
-        rtn := readChild(PassNode, 'clrFirstUserPriCombined');
-        if rtn <> 'ERROR' then clrFirstUserPriCombined := StringToColor(rtn);
-        rtn := readChild(PassNode, 'clrFirstUserSpitual');
-        if rtn <> 'ERROR' then clrFirstUserSpitual := StringToColor(rtn);
-        rtn := readChild(PassNode, 'clrFirstUserAesthetic');
-        if rtn <> 'ERROR' then clrFirstUserAesthetic := StringToColor(rtn);
-        rtn := readChild(PassNode, 'clrFirstUserAwareness');
-        if rtn <> 'ERROR' then clrFirstUserAwareness := StringToColor(rtn);
-        rtn := readChild(PassNode, 'clrFirstUserIntuition');
-        if rtn <> 'ERROR' then clrFirstUserIntuition := StringToColor(rtn);
-        rtn := readChild(PassNode, 'clrFirstUserSecCombined');
-        if rtn <> 'ERROR' then clrFirstUserSecCombined := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrFirstPhysical');
+        if rtn <> 'ERROR' then clrFirstPhysical := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrFirstIntellectual');
+        if rtn <> 'ERROR' then clrFirstIntellectual := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrFirstEmotional');
+        if rtn <> 'ERROR' then clrFirstEmotional := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrFirstPriCombined');
+        if rtn <> 'ERROR' then clrFirstPriCombined := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrFirstSpitual');
+        if rtn <> 'ERROR' then clrFirstSpitual := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrFirstAesthetic');
+        if rtn <> 'ERROR' then clrFirstAesthetic := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrFirstAwareness');
+        if rtn <> 'ERROR' then clrFirstAwareness := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrFirstIntuition');
+        if rtn <> 'ERROR' then clrFirstIntuition := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrFirstSecCombined');
+        if rtn <> 'ERROR' then clrFirstSecCombined := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrFirstOverall');
+        if rtn <> 'ERROR' then clrFirstOverall := StringToColor(rtn);
 
-        rtn := readChild(PassNode, 'clrSecondUserPhysical');
-        if rtn <> 'ERROR' then clrSecondUserPhysical := StringToColor(rtn);
-        rtn := readChild(PassNode, 'clrSeconduserIntellectual');
-        if rtn <> 'ERROR' then clrSeconduserIntellectual := StringToColor(rtn);
-        rtn := readChild(PassNode, 'clrSecondUserEmotional');
-        if rtn <> 'ERROR' then clrSecondUserEmotional := StringToColor(rtn);
-        rtn := readChild(PassNode, 'clrSecondUserPriCombined');
-        if rtn <> 'ERROR' then clrSecondUserPriCombined := StringToColor(rtn);
-        rtn := readChild(PassNode, 'clrSecondUserSpitual');
-        if rtn <> 'ERROR' then clrSecondUserSpitual := StringToColor(rtn);
-        rtn := readChild(PassNode, 'clrSecondUserAesthetic');
-        if rtn <> 'ERROR' then clrSecondUserAesthetic := StringToColor(rtn);
-        rtn := readChild(PassNode, 'clrSecondUserAwareness');
-        if rtn <> 'ERROR' then clrSecondUserAwareness := StringToColor(rtn);
-        rtn := readChild(PassNode, 'clrSecondUserIntuition');
-        if rtn <> 'ERROR' then clrSecondUserIntuition := StringToColor(rtn);
-        rtn := readChild(PassNode, 'clrSecondUserSecCombined');
-        if rtn <> 'ERROR' then clrSecondUserSecCombined := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrSecondPhysical');
+        if rtn <> 'ERROR' then clrSecondPhysical := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrSecondIntellectual');
+        if rtn <> 'ERROR' then clrSecondIntellectual := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrSecondEmotional');
+        if rtn <> 'ERROR' then clrSecondEmotional := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrSecondPriCombined');
+        if rtn <> 'ERROR' then clrSecondPriCombined := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrSecondSpitual');
+        if rtn <> 'ERROR' then clrSecondSpitual := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrSecondAesthetic');
+        if rtn <> 'ERROR' then clrSecondAesthetic := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrSecondAwareness');
+        if rtn <> 'ERROR' then clrSecondAwareness := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrSecondIntuition');
+        if rtn <> 'ERROR' then clrSecondIntuition := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrSecondSecCombined');
+        if rtn <> 'ERROR' then clrSecondSecCombined := StringToColor(rtn);
+        rtn := readChild(PassNode, 'clrSecondOverall');
+        if rtn <> 'ERROR' then clrSecondOverall := StringToColor(rtn);
       end;
 
     finally
@@ -429,25 +439,27 @@ implementation
     useSecondUser   := true;
 
     //  Colours
-    clrFirstUserPhysical     := clRed;
-    clrFirstuserIntellectual := clBlue;
-    clrFirstUserEmotional    := clGreen;
-    clrFirstUserPriCombined  := clAqua;
-    clrFirstUserSpitual      := clMaroon;
-    clrFirstUserAesthetic    := clTeal;
-    clrFirstUserAwareness    := clFuchsia;
-    clrFirstUserIntuition    := clSilver;
-    clrFirstUserSecCombined  := clOlive;
+    clrFirstPhysical     := clRed;
+    clrFirstIntellectual := clBlue;
+    clrFirstEmotional    := clGreen;
+    clrFirstPriCombined  := clAqua;
+    clrFirstSpitual      := clMaroon;
+    clrFirstAesthetic    := clTeal;
+    clrFirstAwareness    := clFuchsia;
+    clrFirstIntuition    := clSilver;
+    clrFirstSecCombined  := clOlive;
+    clrFirstOverall      := clLime;
 
-    clrSecondUserPhysical     := clRed;
-    clrSeconduserIntellectual := clBlue;
-    clrSecondUserEmotional    := clGreen;
-    clrSecondUserPriCombined  := clAqua;
-    clrSecondUserSpitual      := clMaroon;
-    clrSecondUserAesthetic    := clTeal;
-    clrSecondUserAwareness    := clFuchsia;
-    clrSecondUserIntuition    := clSilver;
-    clrSecondUserSecCombined  := clOlive;
+    clrSecondPhysical     := clRed;
+    clrSecondIntellectual := clBlue;
+    clrSecondEmotional    := clGreen;
+    clrSecondPriCombined  := clAqua;
+    clrSecondSpitual      := clMaroon;
+    clrSecondAesthetic    := clTeal;
+    clrSecondAwareness    := clFuchsia;
+    clrSecondIntuition    := clSilver;
+    clrSecondSecCombined  := clOlive;
+    clrSecondOverall      := clLime;
 
     writeCurrentOptions;
   end;
@@ -502,25 +514,27 @@ implementation
       //Colours
       ElementNode := Doc.CreateElement('Colours');
 
-      ElementNode.AppendChild(writeColChild(doc, 'clrFirstUserPhysical',     clrFirstUserPhysical));
-      ElementNode.AppendChild(writeColChild(doc, 'clrFirstuserIntellectual', clrFirstuserIntellectual));
-      ElementNode.AppendChild(writeColChild(doc, 'clrFirstUserEmotional',    clrFirstUserEmotional));
-      ElementNode.AppendChild(writeColChild(doc, 'clrFirstUserPriCombined',  clrFirstUserPriCombined));
-      ElementNode.AppendChild(writeColChild(doc, 'clrFirstUserSpitual',      clrFirstUserSpitual));
-      ElementNode.AppendChild(writeColChild(doc, 'clrFirstUserAesthetic',    clrFirstUserAesthetic));
-      ElementNode.AppendChild(writeColChild(doc, 'clrFirstUserAwareness',    clrFirstUserAwareness));
-      ElementNode.AppendChild(writeColChild(doc, 'clrFirstUserIntuition',    clrFirstUserIntuition));
-      ElementNode.AppendChild(writeColChild(doc, 'clrFirstUserSecCombined',  clrFirstUserSecCombined));
+      ElementNode.AppendChild(writeColChild(doc, 'clrFirstPhysical',     clrFirstPhysical));
+      ElementNode.AppendChild(writeColChild(doc, 'clrFirstIntellectual', clrFirstIntellectual));
+      ElementNode.AppendChild(writeColChild(doc, 'clrFirstEmotional',    clrFirstEmotional));
+      ElementNode.AppendChild(writeColChild(doc, 'clrFirstPriCombined',  clrFirstPriCombined));
+      ElementNode.AppendChild(writeColChild(doc, 'clrFirstSpitual',      clrFirstSpitual));
+      ElementNode.AppendChild(writeColChild(doc, 'clrFirstAesthetic',    clrFirstAesthetic));
+      ElementNode.AppendChild(writeColChild(doc, 'clrFirstAwareness',    clrFirstAwareness));
+      ElementNode.AppendChild(writeColChild(doc, 'clrFirstIntuition',    clrFirstIntuition));
+      ElementNode.AppendChild(writeColChild(doc, 'clrFirstSecCombined',  clrFirstSecCombined));
+      ElementNode.AppendChild(writeColChild(doc, 'clrFirstOverall',      clrFirstOverall));
 
-      ElementNode.AppendChild(writeColChild(doc, 'clrSecondUserPhysical',     clrSecondUserPhysical));
-      ElementNode.AppendChild(writeColChild(doc, 'clrSeconduserIntellectual', clrSeconduserIntellectual));
-      ElementNode.AppendChild(writeColChild(doc, 'clrSecondUserEmotional',    clrSecondUserEmotional));
-      ElementNode.AppendChild(writeColChild(doc, 'clrSecondUserPriCombined',  clrSecondUserPriCombined));
-      ElementNode.AppendChild(writeColChild(doc, 'clrSecondUserSpitual',      clrSecondUserSpitual));
-      ElementNode.AppendChild(writeColChild(doc, 'clrSecondUserAesthetic',    clrSecondUserAesthetic));
-      ElementNode.AppendChild(writeColChild(doc, 'clrSecondUserAwareness',    clrSecondUserAwareness));
-      ElementNode.AppendChild(writeColChild(doc, 'clrSecondUserIntuition',    clrSecondUserIntuition));
-      ElementNode.AppendChild(writeColChild(doc, 'clrSecondUserSecCombined',  clrSecondUserSecCombined));
+      ElementNode.AppendChild(writeColChild(doc, 'clrSecondPhysical',     clrSecondPhysical));
+      ElementNode.AppendChild(writeColChild(doc, 'clrSecondIntellectual', clrSecondIntellectual));
+      ElementNode.AppendChild(writeColChild(doc, 'clrSecondEmotional',    clrSecondEmotional));
+      ElementNode.AppendChild(writeColChild(doc, 'clrSecondPriCombined',  clrSecondPriCombined));
+      ElementNode.AppendChild(writeColChild(doc, 'clrSecondSpitual',      clrSecondSpitual));
+      ElementNode.AppendChild(writeColChild(doc, 'clrSecondAesthetic',    clrSecondAesthetic));
+      ElementNode.AppendChild(writeColChild(doc, 'clrSecondAwareness',    clrSecondAwareness));
+      ElementNode.AppendChild(writeColChild(doc, 'clrSecondIntuition',    clrSecondIntuition));
+      ElementNode.AppendChild(writeColChild(doc, 'clrSecondSecCombined',  clrSecondSecCombined));
+      ElementNode.AppendChild(writeColChild(doc, 'clrSecondOverall',      clrSecondOverall));
 
       RootNode.AppendChild(ElementNode);
 

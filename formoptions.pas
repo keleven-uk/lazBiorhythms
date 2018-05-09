@@ -13,59 +13,73 @@ type
   { TfrmOptions }
 
   TfrmOptions = class(TForm)
-    btnExit                     : TButton;
-    btnOkay                     : TButton;
-    btnReset                    : TButton;
-    clrBtnSecondUserAesthetic   : TColorButton;
-    clrBtnSecondUserAweraness   : TColorButton;
-    clrBtnSecondUserEmotional   : TColorButton;
-    clrBtnSecondUserIntellectual: TColorButton;
-    clrBtnFirstUserPhysical     : TColorButton;
-    clrBtnFirstUserIntellectual : TColorButton;
-    clrBtnFirstUserEmotional    : TColorButton;
-    clrBtnSecondUserPhysical    : TColorButton;
-    clrBtnFirstUserSpirtual     : TColorButton;
-    clrBtnFirstUserAesthetic    : TColorButton;
-    clrBtnFirstUserAweraness    : TColorButton;
-    clrBtnSecondUserSpirtual    : TColorButton;
-    clrBtnSecSecondUserCombined : TColorButton;
-    cltBtnFirstUserIntuition    : TColorButton;
-    cltBtnSecondUserIntuition   : TColorButton;
-    cltBtnFirstUserPriCombined  : TColorButton;
-    clrBtnSecFirstUserCombined  : TColorButton;
-    cltBtnSecondUserPriCombined : TColorButton;
-    lblSecondUserAesthetic      : TLabel;
-    lblFirstUserAweraness       : TLabel;
-    lblSecondUserAweraness      : TLabel;
-    lblSecondUserEmotional      : TLabel;
-    lblSecondUserIntellectual   : TLabel;
-    lblFirstUserIntuition       : TLabel;
-    lblFirstUserEmotional       : TLabel;
-    lblSecondUserIntuition      : TLabel;
-    lblSecondUserPhysical       : TLabel;
-    lblSecondUserPriCombined    : TLabel;
-    lblSecondUserSpirtual       : TLabel;
-    lblSecFirstUserCombined     : TLabel;
-    lblFirstUserPriCombined     : TLabel;
-    lblFirstUserPhysical        : TLabel;
-    lblFirstUserIntellectual    : TLabel;
-    lblFirstUserSpirtual        : TLabel;
-    lblFirstUserAesthetic       : TLabel;
-    lblSecSecondUserCombined    : TLabel;
-    PageControl1                : TPageControl;
-    tbShtGlobal                 : TTabSheet;
-    tbShtFirstUsersColous       : TTabSheet;
-    tbShtSecondUsersColous      : TTabSheet;
-    ColorDialog1                : TColorDialog;
-    Panel1                      : TPanel;
-    Panel2                      : TPanel;
-    Panel3                      : TPanel;
-    Panel4                      : TPanel;
-    Panel5                      : TPanel;
+    btnExit                 : TButton;
+    btnOkay                 : TButton;
+    btnReset                : TButton;
+    clrBtnSecondAesthetic   : TColorButton;
+    clrBtnSecondAweraness   : TColorButton;
+    clrBtnSecondEmotional   : TColorButton;
+    clrBtnSecondIntellectual: TColorButton;
+    clrBtnFirstPhysical     : TColorButton;
+    clrBtnFirstIntellectual : TColorButton;
+    clrBtnFirstEmotional    : TColorButton;
+    clrBtnSecondPhysical    : TColorButton;
+    clrBtnFirstSpitual      : TColorButton;
+    clrBtnFirstAesthetic    : TColorButton;
+    clrBtnFirstAwaraness    : TColorButton;
+    clrBtnSecondSpirtual    : TColorButton;
+    clrBtnSecSecondCombined : TColorButton;
+    clrBtnFirstIntuition    : TColorButton;
+    clrBtnFirstOverall      : TColorButton;
+    clrBtnSecondIntuition   : TColorButton;
+    clrBtnFirstPriCombined  : TColorButton;
+    clrBtnFirstSecCombined  : TColorButton;
+    clrBtnSecondPriCombined : TColorButton;
+    clrBtnSecondOverall     : TColorButton;
+    lblFirstOverall         : TLabel;
+    lblSecondAesthetic      : TLabel;
+    lblFirstAwaraness       : TLabel;
+    lblSecondAweraness      : TLabel;
+    lblSecondEmotional      : TLabel;
+    lblSecondIntellectual   : TLabel;
+    lblFirstIntuition       : TLabel;
+    lblFirstEmotional       : TLabel;
+    lblSecondIntuition      : TLabel;
+    lblSecondPhysical       : TLabel;
+    lblSecondPriCombined    : TLabel;
+    lblSecondOverall        : TLabel;
+    lblSecondSpirtual       : TLabel;
+    lblFirstSecCombined     : TLabel;
+    lblFirstPriCombined     : TLabel;
+    lblFirstPhysical        : TLabel;
+    lblFirstIntellectual    : TLabel;
+    lblFirstSpitual         : TLabel;
+    lblFirstAesthetic       : TLabel;
+    lblSecSecondCombined    : TLabel;
+    PageControl1            : TPageControl;
+    tbShtGlobal             : TTabSheet;
+    tbShtFirstUsersColous   : TTabSheet;
+    tbShtSecondUsersColous  : TTabSheet;
+    ColorDialog1            : TColorDialog;
+    Panel1                  : TPanel;
+    Panel2                  : TPanel;
+    Panel3                  : TPanel;
+    Panel4                  : TPanel;
+    Panel5                  : TPanel;
 
     procedure btnExitClick(Sender: TObject);
     procedure btnOkayClick(Sender: TObject);
     procedure btnResetClick(Sender: TObject);
+    procedure clrBtnFirstAestheticClick(Sender: TObject);
+    procedure clrBtnFirstAwaranessClick(Sender: TObject);
+    procedure clrBtnFirstEmotionalClick(Sender: TObject);
+    procedure clrBtnFirstIntellectualClick(Sender: TObject);
+    procedure clrBtnFirstIntuitionClick(Sender: TObject);
+    procedure clrBtnFirstPhysicalClick(Sender: TObject);
+    procedure clrBtnFirstPriCombinedClick(Sender: TObject);
+    procedure clrBtnFirstOverallClick(Sender: TObject);
+    procedure clrBtnFirstSpitualClick(Sender: TObject);
+    procedure clrBtnFirstSecCombinedClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
   private
     procedure colourStuff;
@@ -118,62 +132,48 @@ end;
 
 procedure TfrmOptions.colourStuff;
 begin
-  lblFirstUserPhysical.font.Color := userOptions.clrFirstUserPhysical;
-  clrBtnFirstUserPhysical.Color   := userOptions.clrFirstUserPhysical;
+  lblFirstPhysical.font.Color         := userOptions.clrFirstPhysical;
+  clrBtnFirstPhysical.ButtonColor     := userOptions.clrFirstPhysical;
+  lblFirstIntellectual.font.Color     := userOptions.clrFirstIntellectual;
+  clrBtnFirstIntellectual.ButtonColor := userOptions.clrFirstIntellectual;
+  lblFirstEmotional.font.Color        := userOptions.clrFirstEmotional;
+  clrBtnFirstEmotional.ButtonColor    := userOptions.clrFirstEmotional;
+  lblFirstPriCombined.font.Color      := userOptions.clrFirstPriCombined;
+  clrBtnFirstPriCombined.ButtonColor  := userOptions.clrFirstPriCombined;
+  lblFirstSpitual.font.Color         := userOptions.clrFirstSpitual;
+  clrBtnFirstSpitual.ButtonColor     := userOptions.clrFirstSpitual;
+  lblFirstAesthetic.font.Color        := userOptions.clrFirstAesthetic;
+  clrBtnFirstAesthetic.ButtonColor    := userOptions.clrFirstAesthetic;
+  lblFirstAwaraness.font.Color        := userOptions.clrFirstAwareness;
+  clrBtnFirstAwaraness.ButtonColor    := userOptions.clrFirstAwareness;
+  lblFirstIntuition.font.Color        := userOptions.clrFirstIntuition;
+  clrBtnFirstIntuition.ButtonColor    := userOptions.clrFirstIntuition;
+  lblFirstSecCombined.font.Color      := userOptions.clrFirstSecCombined;
+  clrBtnFirstSecCombined.ButtonColor       := userOptions.clrFirstSecCombined;
+  lblFirstOverall.Font.Color       := userOptions.clrFirstOverall;
+  clrBtnFirstOverall.ButtonColor   := userOptions.clrFirstOverall;
 
-  lblFirstUserIntellectual.font.Color := userOptions.clrFirstUserIntellectual;
-  clrBtnFirstUserIntellectual.Color  := userOptions.clrFirstUserIntellectual;
-
-  lblFirstUserEmotional.font.Color := userOptions.clrFirstUserEmotional;
-  clrBtnFirstUserEmotional.Color   := userOptions.clrFirstUserEmotional;
-
-  lblFirstUserPriCombined.font.Color := userOptions.clrFirstUserPriCombined;
-  cltBtnFirstUserPriCombined.Color   := userOptions.clrFirstUserPriCombined;
-
-  lblFirstUserSpirtual.font.Color := userOptions.clrFirstUserSpitual;
-  clrBtnFirstUserSpirtual.Color  := userOptions.clrFirstUserSpitual;
-
-  lblFirstUserAesthetic.font.Color := userOptions.clrFirstUserAesthetic;
-  clrBtnFirstUserAesthetic.Color   := userOptions.clrFirstUserAesthetic;
-
-  lblFirstUserAweraness.font.Color := userOptions.clrFirstUserAwareness;
-  clrBtnFirstUserAweraness.Color   := userOptions.clrFirstUserAwareness;
-
-  lblFirstUserIntuition.font.Color := userOptions.clrFirstUserIntuition;
-  cltBtnFirstUserIntuition.Color   := userOptions.clrFirstUserIntuition;
-
-  lblSecFirstUserCombined.font.Color := userOptions.clrFirstUserSecCombined;
-  clrBtnSecFirstUserCombined.Color   := userOptions.clrFirstUserSecCombined;
-
-
-  lblSecondUserPhysical.font.Color := userOptions.clrSecondUserPhysical;
-  clrBtnSecondUserPhysical.Color   := userOptions.clrSecondUserPhysical;
-
-  lblSecondUserIntellectual.font.Color := userOptions.clrSecondUserIntellectual;
-  clrBtnSecondUserIntellectual.Color  := userOptions.clrSecondUserIntellectual;
-
-  lblSecondUserEmotional.font.Color := userOptions.clrSecondUserEmotional;
-  clrBtnSecondUserEmotional.Color   := userOptions.clrSecondUserEmotional;
-
-  lblSecondUserPriCombined.font.Color := userOptions.clrSecondUserPriCombined;
-  cltBtnSecondUserPriCombined.Color   := userOptions.clrSecondUserPriCombined;
-
-  lblSecondUserSpirtual.font.Color := userOptions.clrSecondUserSpitual;
-  clrBtnSecondUserSpirtual.Color  := userOptions.clrSecondUserSpitual;
-
-  lblSecondUserAesthetic.font.Color := userOptions.clrSecondUserAesthetic;
-  clrBtnSecondUserAesthetic.Color   := userOptions.clrSecondUserAesthetic;
-
-  lblSecondUserAweraness.font.Color := userOptions.clrSecondUserAwareness;
-  clrBtnSecondUserAweraness.Color   := userOptions.clrSecondUserAwareness;
-
-  lblSecondUserIntuition.font.Color := userOptions.clrSecondUserIntuition;
-  cltBtnSecondUserIntuition.Color   := userOptions.clrSecondUserIntuition;
-
-  lblSecSecondUserCombined.font.Color := userOptions.clrSecondUserSecCombined;
-  clrBtnSecSecondUserCombined.Color   := userOptions.clrSecondUserSecCombined;
+  lblSecondPhysical.font.Color         := userOptions.clrSecondPhysical;
+  clrBtnSecondPhysical.ButtonColor     := userOptions.clrSecondPhysical;
+  lblSecondIntellectual.font.Color     := userOptions.clrSecondIntellectual;
+  clrBtnSecondIntellectual.ButtonColor := userOptions.clrSecondIntellectual;
+  lblSecondEmotional.font.Color        := userOptions.clrSecondEmotional;
+  clrBtnSecondEmotional.ButtonColor    := userOptions.clrSecondEmotional;
+  lblSecondPriCombined.font.Color      := userOptions.clrSecondPriCombined;
+  clrBtnSecondPriCombined.ButtonColor  := userOptions.clrSecondPriCombined;
+  lblSecondSpirtual.font.Color         := userOptions.clrSecondSpitual;
+  clrBtnSecondSpirtual.ButtonColor     := userOptions.clrSecondSpitual;
+  lblSecondAesthetic.font.Color        := userOptions.clrSecondAesthetic;
+  clrBtnSecondAesthetic.ButtonColor    := userOptions.clrSecondAesthetic;
+  lblSecondAweraness.font.Color        := userOptions.clrSecondAwareness;
+  clrBtnSecondAweraness.ButtonColor    := userOptions.clrSecondAwareness;
+  lblSecondIntuition.font.Color        := userOptions.clrSecondIntuition;
+  clrBtnSecondIntuition.ButtonColor    := userOptions.clrSecondIntuition;
+  lblSecSecondCombined.font.Color      := userOptions.clrSecondSecCombined;
+  clrBtnSecSecondCombined.ButtonColor  := userOptions.clrSecondSecCombined;
+  lblSecondOverall.Font.Color          := userOptions.clrSecondOverall;
+  clrBtnSecondOverall.ButtonColor      := userOptions.clrSecondOverall;
 end;
-
 //
 //  ..................................... Forms Buttons ........................
 //
@@ -207,6 +207,68 @@ begin
   userOptions.writeDefaultOptions;
 end;
 
+//
+//  ..................................... Colour Buttons .......................
+//
+procedure TfrmOptions.clrBtnFirstPhysicalClick(Sender: TObject);
+begin
+  lblFirstPhysical.Font.Color     := clrBtnFirstPhysical.ButtonColor;
+  userbacOptions.clrFirstPhysical := clrBtnFirstPhysical.ButtonColor;
+end;
+
+procedure TfrmOptions.clrBtnFirstIntellectualClick(Sender: TObject);
+begin
+  lblFirstIntellectual.Font.Color     := clrBtnFirstIntellectual.ButtonColor;
+  userbacOptions.clrFirstIntellectual := clrBtnFirstIntellectual.ButtonColor;
+end;
+
+procedure TfrmOptions.clrBtnFirstEmotionalClick(Sender: TObject);
+begin
+  lblFirstEmotional.Font.Color     := clrBtnFirstEmotional.ButtonColor;
+  userbacOptions.clrFirstEmotional := clrBtnFirstEmotional.ButtonColor;
+end;
+
+procedure TfrmOptions.clrBtnFirstPriCombinedClick(Sender: TObject);
+begin
+  lblFirstPriCombined.Font.Color     := clrBtnFirstPriCombined.ButtonColor;
+  userbacOptions.clrFirstPriCombined := clrBtnFirstPriCombined.ButtonColor;
+end;
+
+procedure TfrmOptions.clrBtnFirstSpitualClick(Sender: TObject);
+begin
+  lblFirstSpitual.Font.Color     := clrBtnFirstSpitual.ButtonColor;
+  userbacOptions.clrFirstSpitual := clrBtnFirstSpitual.ButtonColor;
+end;
+
+procedure TfrmOptions.clrBtnFirstAestheticClick(Sender: TObject);
+begin
+  lblFirstAesthetic.Font.Color     := clrBtnFirstAesthetic.ButtonColor;
+  userbacOptions.clrFirstAesthetic := clrBtnFirstAesthetic.ButtonColor;
+end;
+
+procedure TfrmOptions.clrBtnFirstAwaranessClick(Sender: TObject);
+begin
+  lblFirstAwaraness.Font.Color     := clrBtnFirstAwaraness.ButtonColor;
+  userbacOptions.clrFirstAwareness := clrBtnFirstAwaraness.ButtonColor;
+end;
+
+procedure TfrmOptions.clrBtnFirstIntuitionClick(Sender: TObject);
+begin
+  lblFirstIntuition.Font.Color     := clrBtnFirstIntuition.ButtonColor;
+  userbacOptions.clrFirstIntuition := clrBtnFirstIntuition.ButtonColor;
+end;
+
+procedure TfrmOptions.clrBtnFirstSecCombinedClick(Sender: TObject);
+begin
+  lblFirstSecCombined.Font.Color     := clrBtnFirstSecCombined.ButtonColor;
+  userbacOptions.clrFirstSecCombined := clrBtnFirstSecCombined.ButtonColor;
+end;
+
+procedure TfrmOptions.clrBtnFirstOverallClick(Sender: TObject);
+begin
+  lblFirstOverall.Font.Color     := clrBtnFirstOverall.ButtonColor;
+  userbacOptions.clrFirstOverall := clrBtnFirstOverall.ButtonColor;
+end;
 
 
 

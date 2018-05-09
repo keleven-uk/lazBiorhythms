@@ -1,7 +1,7 @@
 object frmOptions: TfrmOptions
-  Left = 1364
+  Left = 1428
   Height = 306
-  Top = 404
+  Top = 333
   Width = 410
   BorderIcons = [biSystemMenu]
   Caption = 'Options'
@@ -56,7 +56,7 @@ object frmOptions: TfrmOptions
           ClientWidth = 376
           ParentColor = False
           TabOrder = 0
-          object clrBtnFirstUserPhysical: TColorButton
+          object clrBtnFirstPhysical: TColorButton
             Left = 112
             Height = 20
             Top = 8
@@ -64,8 +64,9 @@ object frmOptions: TfrmOptions
             BorderWidth = 2
             ButtonColorSize = 16
             ButtonColor = clBlack
+            OnClick = clrBtnFirstPhysicalClick
           end
-          object clrBtnFirstUserIntellectual: TColorButton
+          object clrBtnFirstIntellectual: TColorButton
             Left = 112
             Height = 20
             Top = 34
@@ -73,8 +74,9 @@ object frmOptions: TfrmOptions
             BorderWidth = 2
             ButtonColorSize = 16
             ButtonColor = clBlack
+            OnClick = clrBtnFirstIntellectualClick
           end
-          object clrBtnFirstUserEmotional: TColorButton
+          object clrBtnFirstEmotional: TColorButton
             Left = 112
             Height = 20
             Top = 60
@@ -82,8 +84,9 @@ object frmOptions: TfrmOptions
             BorderWidth = 2
             ButtonColorSize = 16
             ButtonColor = clBlack
+            OnClick = clrBtnFirstEmotionalClick
           end
-          object clrBtnFirstUserSpirtual: TColorButton
+          object clrBtnFirstSpitual: TColorButton
             Left = 312
             Height = 20
             Top = 8
@@ -91,8 +94,9 @@ object frmOptions: TfrmOptions
             BorderWidth = 2
             ButtonColorSize = 16
             ButtonColor = clBlack
+            OnClick = clrBtnFirstSpitualClick
           end
-          object clrBtnFirstUserAesthetic: TColorButton
+          object clrBtnFirstAesthetic: TColorButton
             Left = 312
             Height = 20
             Top = 34
@@ -100,8 +104,9 @@ object frmOptions: TfrmOptions
             BorderWidth = 2
             ButtonColorSize = 16
             ButtonColor = clBlack
+            OnClick = clrBtnFirstAestheticClick
           end
-          object clrBtnFirstUserAweraness: TColorButton
+          object clrBtnFirstAwaraness: TColorButton
             Left = 312
             Height = 20
             Top = 61
@@ -109,8 +114,9 @@ object frmOptions: TfrmOptions
             BorderWidth = 2
             ButtonColorSize = 16
             ButtonColor = clBlack
+            OnClick = clrBtnFirstAwaranessClick
           end
-          object cltBtnFirstUserIntuition: TColorButton
+          object clrBtnFirstIntuition: TColorButton
             Left = 312
             Height = 20
             Top = 88
@@ -118,8 +124,9 @@ object frmOptions: TfrmOptions
             BorderWidth = 2
             ButtonColorSize = 16
             ButtonColor = clBlack
+            OnClick = clrBtnFirstIntuitionClick
           end
-          object cltBtnFirstUserPriCombined: TColorButton
+          object clrBtnFirstPriCombined: TColorButton
             Left = 112
             Height = 20
             Top = 88
@@ -127,8 +134,9 @@ object frmOptions: TfrmOptions
             BorderWidth = 2
             ButtonColorSize = 16
             ButtonColor = clBlack
+            OnClick = clrBtnFirstPriCombinedClick
           end
-          object clrBtnSecFirstUserCombined: TColorButton
+          object clrBtnFirstSecCombined: TColorButton
             Left = 312
             Height = 20
             Top = 116
@@ -136,8 +144,9 @@ object frmOptions: TfrmOptions
             BorderWidth = 2
             ButtonColorSize = 16
             ButtonColor = clBlack
+            OnClick = clrBtnFirstSecCombinedClick
           end
-          object lblFirstUserPhysical: TLabel
+          object lblFirstPhysical: TLabel
             Left = 24
             Height = 21
             Top = 8
@@ -147,7 +156,7 @@ object frmOptions: TfrmOptions
             ParentColor = False
             ParentFont = False
           end
-          object lblFirstUserIntellectual: TLabel
+          object lblFirstIntellectual: TLabel
             Left = 24
             Height = 21
             Top = 34
@@ -157,7 +166,7 @@ object frmOptions: TfrmOptions
             ParentColor = False
             ParentFont = False
           end
-          object lblFirstUserEmotional: TLabel
+          object lblFirstEmotional: TLabel
             Left = 24
             Height = 21
             Top = 60
@@ -167,7 +176,7 @@ object frmOptions: TfrmOptions
             ParentColor = False
             ParentFont = False
           end
-          object lblFirstUserPriCombined: TLabel
+          object lblFirstPriCombined: TLabel
             Left = 24
             Height = 21
             Top = 88
@@ -177,17 +186,17 @@ object frmOptions: TfrmOptions
             ParentColor = False
             ParentFont = False
           end
-          object lblFirstUserSpirtual: TLabel
+          object lblFirstSpitual: TLabel
             Left = 208
             Height = 21
             Top = 8
-            Width = 54
-            Caption = 'Spirtual'
+            Width = 48
+            Caption = 'Spitual'
             Font.Height = -16
             ParentColor = False
             ParentFont = False
           end
-          object lblFirstUserAesthetic: TLabel
+          object lblFirstAesthetic: TLabel
             Left = 208
             Height = 21
             Top = 34
@@ -197,17 +206,17 @@ object frmOptions: TfrmOptions
             ParentColor = False
             ParentFont = False
           end
-          object lblFirstUserAweraness: TLabel
+          object lblFirstAwaraness: TLabel
             Left = 208
             Height = 21
             Top = 60
             Width = 75
-            Caption = 'Aweraness'
+            Caption = 'Awaraness'
             Font.Height = -16
             ParentColor = False
             ParentFont = False
           end
-          object lblFirstUserIntuition: TLabel
+          object lblFirstIntuition: TLabel
             Left = 208
             Height = 21
             Top = 88
@@ -217,7 +226,7 @@ object frmOptions: TfrmOptions
             ParentColor = False
             ParentFont = False
           end
-          object lblSecFirstUserCombined: TLabel
+          object lblFirstSecCombined: TLabel
             Left = 208
             Height = 21
             Top = 116
@@ -226,6 +235,26 @@ object frmOptions: TfrmOptions
             Font.Height = -16
             ParentColor = False
             ParentFont = False
+          end
+          object lblFirstOverall: TLabel
+            Left = 24
+            Height = 21
+            Top = 136
+            Width = 50
+            Caption = 'Overall'
+            Font.Height = -16
+            ParentColor = False
+            ParentFont = False
+          end
+          object clrBtnFirstOverall: TColorButton
+            Left = 112
+            Height = 20
+            Top = 136
+            Width = 50
+            BorderWidth = 2
+            ButtonColorSize = 16
+            ButtonColor = clBlack
+            OnClick = clrBtnFirstOverallClick
           end
         end
       end
@@ -244,7 +273,7 @@ object frmOptions: TfrmOptions
           ClientWidth = 376
           ParentColor = False
           TabOrder = 0
-          object lblSecondUserPhysical: TLabel
+          object lblSecondPhysical: TLabel
             Left = 24
             Height = 21
             Top = 8
@@ -254,7 +283,7 @@ object frmOptions: TfrmOptions
             ParentColor = False
             ParentFont = False
           end
-          object lblSecondUserIntellectual: TLabel
+          object lblSecondIntellectual: TLabel
             Left = 24
             Height = 21
             Top = 34
@@ -264,7 +293,7 @@ object frmOptions: TfrmOptions
             ParentColor = False
             ParentFont = False
           end
-          object lblSecondUserEmotional: TLabel
+          object lblSecondEmotional: TLabel
             Left = 24
             Height = 21
             Top = 60
@@ -274,7 +303,7 @@ object frmOptions: TfrmOptions
             ParentColor = False
             ParentFont = False
           end
-          object lblSecondUserPriCombined: TLabel
+          object lblSecondPriCombined: TLabel
             Left = 24
             Height = 21
             Top = 88
@@ -284,7 +313,7 @@ object frmOptions: TfrmOptions
             ParentColor = False
             ParentFont = False
           end
-          object cltBtnSecondUserPriCombined: TColorButton
+          object clrBtnSecondPriCombined: TColorButton
             Left = 112
             Height = 20
             Top = 88
@@ -293,7 +322,7 @@ object frmOptions: TfrmOptions
             ButtonColorSize = 16
             ButtonColor = clBlack
           end
-          object clrBtnSecondUserEmotional: TColorButton
+          object clrBtnSecondEmotional: TColorButton
             Left = 112
             Height = 20
             Top = 60
@@ -302,7 +331,7 @@ object frmOptions: TfrmOptions
             ButtonColorSize = 16
             ButtonColor = clBlack
           end
-          object clrBtnSecondUserIntellectual: TColorButton
+          object clrBtnSecondIntellectual: TColorButton
             Left = 112
             Height = 20
             Top = 34
@@ -311,7 +340,7 @@ object frmOptions: TfrmOptions
             ButtonColorSize = 16
             ButtonColor = clBlack
           end
-          object clrBtnSecondUserPhysical: TColorButton
+          object clrBtnSecondPhysical: TColorButton
             Left = 112
             Height = 20
             Top = 8
@@ -320,7 +349,7 @@ object frmOptions: TfrmOptions
             ButtonColorSize = 16
             ButtonColor = clBlack
           end
-          object lblSecondUserSpirtual: TLabel
+          object lblSecondSpirtual: TLabel
             Left = 192
             Height = 21
             Top = 8
@@ -330,7 +359,7 @@ object frmOptions: TfrmOptions
             ParentColor = False
             ParentFont = False
           end
-          object lblSecondUserAesthetic: TLabel
+          object lblSecondAesthetic: TLabel
             Left = 192
             Height = 21
             Top = 34
@@ -340,7 +369,7 @@ object frmOptions: TfrmOptions
             ParentColor = False
             ParentFont = False
           end
-          object lblSecondUserAweraness: TLabel
+          object lblSecondAweraness: TLabel
             Left = 192
             Height = 21
             Top = 60
@@ -350,7 +379,7 @@ object frmOptions: TfrmOptions
             ParentColor = False
             ParentFont = False
           end
-          object lblSecondUserIntuition: TLabel
+          object lblSecondIntuition: TLabel
             Left = 192
             Height = 21
             Top = 88
@@ -360,7 +389,7 @@ object frmOptions: TfrmOptions
             ParentColor = False
             ParentFont = False
           end
-          object lblSecSecondUserCombined: TLabel
+          object lblSecSecondCombined: TLabel
             Left = 192
             Height = 21
             Top = 116
@@ -370,7 +399,7 @@ object frmOptions: TfrmOptions
             ParentColor = False
             ParentFont = False
           end
-          object clrBtnSecSecondUserCombined: TColorButton
+          object clrBtnSecSecondCombined: TColorButton
             Left = 296
             Height = 20
             Top = 116
@@ -379,7 +408,7 @@ object frmOptions: TfrmOptions
             ButtonColorSize = 16
             ButtonColor = clBlack
           end
-          object cltBtnSecondUserIntuition: TColorButton
+          object clrBtnSecondIntuition: TColorButton
             Left = 296
             Height = 20
             Top = 88
@@ -388,7 +417,7 @@ object frmOptions: TfrmOptions
             ButtonColorSize = 16
             ButtonColor = clBlack
           end
-          object clrBtnSecondUserAweraness: TColorButton
+          object clrBtnSecondAweraness: TColorButton
             Left = 296
             Height = 20
             Top = 61
@@ -397,7 +426,7 @@ object frmOptions: TfrmOptions
             ButtonColorSize = 16
             ButtonColor = clBlack
           end
-          object clrBtnSecondUserAesthetic: TColorButton
+          object clrBtnSecondAesthetic: TColorButton
             Left = 296
             Height = 20
             Top = 34
@@ -406,10 +435,29 @@ object frmOptions: TfrmOptions
             ButtonColorSize = 16
             ButtonColor = clBlack
           end
-          object clrBtnSecondUserSpirtual: TColorButton
+          object clrBtnSecondSpirtual: TColorButton
             Left = 296
             Height = 20
             Top = 8
+            Width = 50
+            BorderWidth = 2
+            ButtonColorSize = 16
+            ButtonColor = clBlack
+          end
+          object lblSecondOverall: TLabel
+            Left = 24
+            Height = 21
+            Top = 136
+            Width = 50
+            Caption = 'Overall'
+            Font.Height = -16
+            ParentColor = False
+            ParentFont = False
+          end
+          object clrBtnSecondOverall: TColorButton
+            Left = 112
+            Height = 20
+            Top = 136
             Width = 50
             BorderWidth = 2
             ButtonColorSize = 16

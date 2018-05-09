@@ -60,3 +60,19 @@ Currently
 1897 lines of source code.
 1061 statements
 16.1% 
+
+
+Build 6
+
+Added a plot for total of all seven rhythms [overall].
+
+Set up colour stuff for second user.
+
+Only enable stuff for a user, if that user is selected.
+
+Corrected range for the today marker [see procedure setToday].
+
+Currently
+1983 lines of source code.
+1139 statements
+15.6% 

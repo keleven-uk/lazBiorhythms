@@ -47,6 +47,7 @@ type
 
   TfrmLazBiorhythms = class(TForm)
     chckBxFirstAesthetic         : TCheckBox;
+    chckBxFirstOverall           : TCheckBox;
     chckBxSecondAesthetic        : TCheckBox;
     chckBxFirstAwareness         : TCheckBox;
     chckBxSecondAwareness        : TCheckBox;
@@ -66,6 +67,7 @@ type
     chckBxFirstPrimaryCombined   : TCheckBox;
     chckBxSecondUser             : TCheckBox;
     chckBxFirstUser              : TCheckBox;
+    chckBxSecondOverall          : TCheckBox;
     ChrtBiorhythms               : TChart;
     DateTimeIntervalChartSource1 : TDateTimeIntervalChartSource;
     lnSrsFirstAwareness          : TLineSeries;
@@ -86,6 +88,8 @@ type
     lnSrsSecondIntellectual      : TLineSeries;
     lnSrsSecondEmotional         : TLineSeries;
     lnSrsSecondPhysical          : TLineSeries;
+    lnSrsFirstOverall            : TLineSeries;
+    lnSrsSecondOverall           : TLineSeries;
     lnSrsTodayMark               : TBarSeries;
     lblFirstAesthetic            : TLabel;
     lblSecondAesthetic           : TLabel;
@@ -101,10 +105,8 @@ type
     lblSecondSecondaryCombined   : TLabel;
     lblFirstSpirtual             : TLabel;
     lblSecondSpirtual            : TLabel;
-    btnExit                      : TButton;
-    GroupBox1                    : TGroupBox;
-    GroupBox2                    : TGroupBox;
-    GroupBox3                    : TGroupBox;
+    lblFirstOverall              : TLabel;
+    lblSecondOverall             : TLabel;
     lblFirstCombined             : TLabel;
     lblFirstEmotional            : TLabel;
     lblFirstIntellectual         : TLabel;
@@ -122,6 +124,10 @@ type
     MenuItmAbout                 : TMenuItem;
     MnItmHelp                    : TMenuItem;
     Panel1                       : TPanel;
+    btnExit                      : TButton;
+    GrpBxBirthDate               : TGroupBox;
+    GrpBxFirstUser               : TGroupBox;
+    GrpBxSecondUser              : TGroupBox;
 
     procedure btnExitClick(Sender: TObject);
     procedure chckBxFirstUserChange(Sender: TObject);
@@ -257,6 +263,9 @@ begin
       if chckBxFirstSecondaryCombined.Checked then
         lnSrsFirstSecondaryCombined.AddXY(sdate, sin(days / 53) + sin(days / 48) + sin(days / 43) + sin(days / 38));
 
+      if chckBxFirstOverall.Checked then
+        lnSrsFirstOverall.AddXY(sdate, sin(days / 23) + sin(days / 28) + sin(days / 33) +
+                                       sin(days / 53) + sin(days / 48) + sin(days / 43) + sin(days / 38));
       sdate := sdate + 1;
     end;
   end;
@@ -293,6 +302,10 @@ begin
       if chckBxSecondSecondaryCombined.Checked then
         lnSrsSecondSecondaryCombined.AddXY(sdate, sin(days / 53) + sin(days / 48) + sin(days / 43) + sin(days / 38));
 
+      if chckBxSecondOverall.Checked then
+        lnSrsSecondOverall.AddXY(sdate, sin(days / 23) + sin(days / 28) + sin(days / 33) +
+                                        sin(days / 53) + sin(days / 48) + sin(days / 43) + sin(days / 38));
+
       sdate := sdate + 1;
     end;
   end;
@@ -306,47 +319,32 @@ end;
 procedure TfrmLazBiorhythms.setToday;
 {  Drawa a vertical bar to indicate today, on the chart.
 
-   It look at each user series to try and determine the range.
-   The secondary combined (if used) has the greatest range.
-   If both user's combines are displayes, use the min and max of the two.
-   If neither combined is used, use defaults.
+   It looks at each user series to try and determine the range.
+   The Overall series will be the larger, then the combined.
+   The individual series all will have the same magnitude.
+   if either Overall or Combined are not used - they return inf, which if ignored.
+   All returned values are loaded into a array, then min or max can be determined.
+   If none is used, use defaults.
 }
 VAR
-  rangeMin : double;
-  rangeMax : double;
+  minArray : array[0..4] of double;
+  maxArray : array[0..4] of double;
 begin
+  minArray[0] := lnSrsFirstSecondaryCombined.MinYValue;
+  minArray[1] := lnSrsSecondSecondaryCombined.MinYValue;
+  minArray[2] := lnSrsFirstOverall.MinYValue;
+  minArray[3] := lnSrsSecondOverall.MinYValue;
+  minArray[4] := -2.5;                                  //  use defaults.
 
-  //  use firse user.
-  if (lnSrsFirstSecondaryCombined.Count <> 0) and (lnSrsSecondSecondaryCombined.Count = 0) then
-  begin
-    rangeMin := lnSrsFirstSecondaryCombined.MinYValue;
-    rangeMax := lnSrsFirstSecondaryCombined.MaxYValue;
-  end;
-
-  //  use second user.
-  if (lnSrsFirstSecondaryCombined.Count = 0) and (lnSrsSecondSecondaryCombined.Count <> 0) then
-  begin
-    rangeMin := lnSrsSecondSecondaryCombined.MinYValue;
-    rangeMax := lnSrsSecondSecondaryCombined.MaxYValue;
-  end;
-
-  //  use min and max of both users.
-  if (lnSrsFirstSecondaryCombined.Count <> 0) and (lnSrsSecondSecondaryCombined.Count <> 0) then
-  begin
-    rangeMin := min(lnSrsFirstSecondaryCombined.MinYValue, lnSrsSecondSecondaryCombined.MinYValue);
-    rangeMax := max(lnSrsFirstSecondaryCombined.MaxYValue, lnSrsSecondSecondaryCombined.MaxYValue);
-  end;
-
-  // neither are bing used, set defaults.
-  if (lnSrsFirstSecondaryCombined.Count = 0) and (lnSrsSecondSecondaryCombined.Count = 0) then
-  begin
-    rangeMin := -2.5;
-    rangeMax := 2.5;
-  end;
+  maxArray[0] := lnSrsFirstSecondaryCombined.MaxYValue;
+  maxArray[1] := lnSrsSecondSecondaryCombined.MaxYValue;
+  maxArray[2] := lnSrsFirstOverall.MaxYValue;
+  maxArray[3] := lnSrsSecondOverall.MaxYValue;
+  maxArray[4] := 2.5;                                   //  use defaults
 
   //  draw the verticsal today line.
-  lnSrsTodayMark.ZeroLevel := rangeMin;
-  lnSrsTodayMark.AddXY(today, rangeMax);
+  lnSrsTodayMark.ZeroLevel := minvalue(minArray);
+  lnSrsTodayMark.AddXY(today, maxvalue(maxArray));
 end;
 
 procedure TfrmLazBiorhythms.clearSeries;
@@ -363,6 +361,8 @@ begin
   lnSrsFirstIntuition.Clear;
   lnSrsFirstSecondaryCombined.Clear;
 
+  lnSrsFirstOverall.Clear;
+
 
   lnSrsSecondPhysical.Clear;
   lnSrsSecondEmotional.Clear;
@@ -374,6 +374,8 @@ begin
   lnSrsSecondAesthetic.Clear;
   lnSrsSecondIntuition.Clear;
   lnSrsSecondSecondaryCombined.Clear;
+
+  lnSrsSecondOverall.Clear;
 
 
   lnSrsTodayMark.Clear;
@@ -394,44 +396,47 @@ procedure TfrmLazBiorhythms.colourStuff;
 {  Sets up default colours for the labels on line series.    }
 begin
 
-  lnSrsFirstPhysical.SeriesColor          := userOptions.clrFirstUserPhysical;
-  lblFirstPhysical.Font.Color             := userOptions.clrFirstUserPhysical;
-  lnSrsFirstIntellectual.SeriesColor      := userOptions.clrFirstUserIntellectual;
-  lblFirstIntellectual.Font.Color         := userOptions.clrFirstUserIntellectual;
-  lnSrsFirstEmotional.SeriesColor         := userOptions.clrFirstUserEmotional;
-  lblFirstEmotional.Font.Color            := userOptions.clrFirstUserEmotional;
-  lnSrsFirstPrimaryCombined.SeriesColor   := userOptions.clrFirstUserPriCombined;
-  lblFirstCombined.Font.Color             := userOptions.clrFirstUserPriCombined;
-  lnSrsFirstSpiritial.SeriesColor         := userOptions.clrFirstUserSpitual;
-  lblFirstSpirtual.Font.Color             := userOptions.clrFirstUserSpitual;
-  lnSrsFirstAwareness.SeriesColor         := userOptions.clrFirstUserAwareness;
-  lblFirstAwareness.Font.Color            := userOptions.clrFirstUserAwareness;
-  lnSrsFirstAesthetic.SeriesColor         := userOptions.clrFirstUserAesthetic;
-  lblFirstAesthetic.Font.Color            := userOptions.clrFirstUserAesthetic;
-  lnSrsFirstIntuition.SeriesColor         := userOptions.clrFirstUserIntuition;
-  lblFirstIntuition.Font.Color            := userOptions.clrFirstUserIntuition;
-  lnSrsFirstSecondaryCombined.SeriesColor := userOptions.clrFirstUserSecCombined;
-  lblFirstSecondaryCombined.Font.Color    := userOptions.clrFirstUserSecCombined;
+  lnSrsFirstPhysical.SeriesColor          := userOptions.clrFirstPhysical;
+  lblFirstPhysical.Font.Color             := userOptions.clrFirstPhysical;
+  lnSrsFirstIntellectual.SeriesColor      := userOptions.clrFirstIntellectual;
+  lblFirstIntellectual.Font.Color         := userOptions.clrFirstIntellectual;
+  lnSrsFirstEmotional.SeriesColor         := userOptions.clrFirstEmotional;
+  lblFirstEmotional.Font.Color            := userOptions.clrFirstEmotional;
+  lnSrsFirstPrimaryCombined.SeriesColor   := userOptions.clrFirstPriCombined;
+  lblFirstCombined.Font.Color             := userOptions.clrFirstPriCombined;
+  lnSrsFirstSpiritial.SeriesColor         := userOptions.clrFirstSpitual;
+  lblFirstSpirtual.Font.Color             := userOptions.clrFirstSpitual;
+  lnSrsFirstAwareness.SeriesColor         := userOptions.clrFirstAwareness;
+  lblFirstAwareness.Font.Color            := userOptions.clrFirstAwareness;
+  lnSrsFirstAesthetic.SeriesColor         := userOptions.clrFirstAesthetic;
+  lblFirstAesthetic.Font.Color            := userOptions.clrFirstAesthetic;
+  lnSrsFirstIntuition.SeriesColor         := userOptions.clrFirstIntuition;
+  lblFirstIntuition.Font.Color            := userOptions.clrFirstIntuition;
+  lnSrsFirstSecondaryCombined.SeriesColor := userOptions.clrFirstSecCombined;
+  lblFirstSecondaryCombined.Font.Color    := userOptions.clrFirstSecCombined;
+  lnSrsFirstOverall.SeriesColor           := userOptions.clrFirstOverall;
+  lblFirstOverall.Font.Color              := userOptions.clrFirstOverall;
 
-
-  lblSecondPhysical.Font.Color             := userOptions.clrSecondUserPhysical;
-  lnSrsSecondPhysical.SeriesColor          := userOptions.clrSecondUserPhysical;
-  lblSecondIntellectual.Font.Color         := userOptions.clrSecondUserIntellectual;
-  lnSrsSecondIntellectual.SeriesColor      := userOptions.clrSecondUserIntellectual;
-  lblSecondEmotional.Font.Color            := userOptions.clrSecondUserEmotional;
-  lnSrsSecondEmotional.SeriesColor         := userOptions.clrSecondUserEmotional;
-  lblSecondCombined.Font.Color             := userOptions.clrSecondUserPriCombined;
-  lnSrsSecondPrimaryCombined.SeriesColor   := userOptions.clrSecondUserPriCombined;
-  lblSecondSpirtual.Font.Color             := userOptions.clrSecondUserSpitual;
-  lnSrsSecondSpiritial.SeriesColor         := userOptions.clrSecondUserSpitual;
-  lblSecondAwareness.Font.Color            := userOptions.clrSecondUserAwareness;
-  lnSrsSecondAwareness.SeriesColor         := userOptions.clrSecondUserAwareness;
-  lblSecondAesthetic.Font.Color            := userOptions.clrSecondUserAesthetic;
-  lnSrsSecondAesthetic.SeriesColor         := userOptions.clrSecondUserAesthetic;
-  lblSecondIntuition.Font.Color            := userOptions.clrSecondUserIntuition;
-  lnSrsSecondIntuition.SeriesColor         := userOptions.clrSecondUserIntuition;
-  lblSecondSecondaryCombined.Font.Color    := userOptions.clrSecondUserSecCombined;
-  lnSrsSecondSecondaryCombined.SeriesColor := userOptions.clrSecondUserSecCombined;
+  lblSecondPhysical.Font.Color             := userOptions.clrSecondPhysical;
+  lnSrsSecondPhysical.SeriesColor          := userOptions.clrSecondPhysical;
+  lblSecondIntellectual.Font.Color         := userOptions.clrSecondIntellectual;
+  lnSrsSecondIntellectual.SeriesColor      := userOptions.clrSecondIntellectual;
+  lblSecondEmotional.Font.Color            := userOptions.clrSecondEmotional;
+  lnSrsSecondEmotional.SeriesColor         := userOptions.clrSecondEmotional;
+  lblSecondCombined.Font.Color             := userOptions.clrSecondPriCombined;
+  lnSrsSecondPrimaryCombined.SeriesColor   := userOptions.clrSecondPriCombined;
+  lblSecondSpirtual.Font.Color             := userOptions.clrSecondSpitual;
+  lnSrsSecondSpiritial.SeriesColor         := userOptions.clrSecondSpitual;
+  lblSecondAwareness.Font.Color            := userOptions.clrSecondAwareness;
+  lnSrsSecondAwareness.SeriesColor         := userOptions.clrSecondAwareness;
+  lblSecondAesthetic.Font.Color            := userOptions.clrSecondAesthetic;
+  lnSrsSecondAesthetic.SeriesColor         := userOptions.clrSecondAesthetic;
+  lblSecondIntuition.Font.Color            := userOptions.clrSecondIntuition;
+  lnSrsSecondIntuition.SeriesColor         := userOptions.clrSecondIntuition;
+  lblSecondSecondaryCombined.Font.Color    := userOptions.clrSecondSecCombined;
+  lnSrsSecondSecondaryCombined.SeriesColor := userOptions.clrSecondSecCombined;
+  lnSrsSecondOverall.SeriesColor           := userOptions.clrSecondOverall;
+  lblSecondOverall.Font.Color              := userOptions.clrSecondOverall;
 end;
 //
 //........................................ Check Boxes .........................
@@ -446,15 +451,20 @@ end;
 
 procedure TfrmLazBiorhythms.chckBxFirstUserChange(Sender: TObject);
 begin
-  userOptions.useFirstUser := chckBxFirstUser.Checked;
+  userOptions.useFirstUser     := chckBxFirstUser.Checked;
+  GrpBxFirstUser.Enabled       := chckBxFirstUser.Checked;
+  lblFirstBirthdayInfo.Enabled := chckBxFirstUser.Checked;
+  DtEdtFirstBirthDay.Enabled   := chckBxFirstUser.Checked;
 
   plotSeries
 end;
 
 procedure TfrmLazBiorhythms.chckBxSecondUserChange(Sender: TObject);
 begin
-  userOptions.useSecondUser := chckBxSecondUser.Checked;
-
+  userOptions.useSecondUser     := chckBxSecondUser.Checked;
+  GrpBxSecondUser.Enabled       := chckBxSecondUser.Checked;
+  lblSecondBirthdayInfo.Enabled := chckBxSecondUser.Checked;
+  DtEdtSecondBirthDay.Enabled   := chckBxSecondUser.Checked;
   plotSeries
 end;
 //
