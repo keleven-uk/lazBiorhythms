@@ -13,13 +13,14 @@ type
   { TfrmHelp }
 
   TfrmHelp = class(TForm)
-    btnhelpExit: TButton;
-    lblComments: TLabel;
+    btnhelpExit : TButton;
+    lblComments : TLabel;
     lblCopyRight: TLabel;
-    lblVersion: TLabel;
-    mmoHelp: TMemo;
-    Panel1: TPanel;
-    Panel2: TPanel;
+    lblVersion  : TLabel;
+    mmoHelp     : TMemo;
+    Panel1      : TPanel;
+    Panel2      : TPanel;
+
     procedure btnhelpExitClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
@@ -56,9 +57,9 @@ begin
     end;
   end;
 
-  lblComments.Caption:= format('%s', [userOptions.Comments]);
-  lblCopyRight.Caption:= userOptions.legalCopyright;
-  lblVersion.Caption:= format('%s Version :: %s', [userOptions.productName, userOptions.fileVersion]);
+  lblComments.Caption  := format('%s', [userOptions.Comments]);
+  lblCopyRight.Caption := userOptions.legalCopyright;
+  lblVersion.Caption   := format('%s Version :: %s', [userOptions.productName, userOptions.fileVersion]);
 end;
 
 procedure TfrmHelp.btnhelpExitClick(Sender: TObject);

@@ -103,8 +103,8 @@ type
     lblSecondPhysical            : TLabel;
     lblFirstSecondaryCombined    : TLabel;
     lblSecondSecondaryCombined   : TLabel;
-    lblFirstSpirtual             : TLabel;
-    lblSecondSpirtual            : TLabel;
+    lblFirstSpiritual            : TLabel;
+    lblSecondSpiritual           : TLabel;
     lblFirstOverall              : TLabel;
     lblSecondOverall             : TLabel;
     lblFirstCombined             : TLabel;
@@ -405,7 +405,7 @@ begin
   lnSrsFirstPrimaryCombined.SeriesColor   := userOptions.clrFirstPriCombined;
   lblFirstCombined.Font.Color             := userOptions.clrFirstPriCombined;
   lnSrsFirstSpiritial.SeriesColor         := userOptions.clrFirstSpitual;
-  lblFirstSpirtual.Font.Color             := userOptions.clrFirstSpitual;
+  lblFirstSpiritual.Font.Color            := userOptions.clrFirstSpitual;
   lnSrsFirstAwareness.SeriesColor         := userOptions.clrFirstAwareness;
   lblFirstAwareness.Font.Color            := userOptions.clrFirstAwareness;
   lnSrsFirstAesthetic.SeriesColor         := userOptions.clrFirstAesthetic;
@@ -425,7 +425,7 @@ begin
   lnSrsSecondEmotional.SeriesColor         := userOptions.clrSecondEmotional;
   lblSecondCombined.Font.Color             := userOptions.clrSecondPriCombined;
   lnSrsSecondPrimaryCombined.SeriesColor   := userOptions.clrSecondPriCombined;
-  lblSecondSpirtual.Font.Color             := userOptions.clrSecondSpitual;
+  lblSecondSpiritual.Font.Color            := userOptions.clrSecondSpitual;
   lnSrsSecondSpiritial.SeriesColor         := userOptions.clrSecondSpitual;
   lblSecondAwareness.Font.Color            := userOptions.clrSecondAwareness;
   lnSrsSecondAwareness.SeriesColor         := userOptions.clrSecondAwareness;

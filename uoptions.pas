@@ -460,8 +460,6 @@ implementation
     clrSecondIntuition    := clSilver;
     clrSecondSecCombined  := clOlive;
     clrSecondOverall      := clLime;
-
-    writeCurrentOptions;
   end;
 
   procedure Options.writeCurrentOptions;

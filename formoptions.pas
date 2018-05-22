@@ -70,16 +70,7 @@ type
     procedure btnExitClick(Sender: TObject);
     procedure btnOkayClick(Sender: TObject);
     procedure btnResetClick(Sender: TObject);
-    procedure clrBtnFirstAestheticClick(Sender: TObject);
-    procedure clrBtnFirstAwaranessClick(Sender: TObject);
-    procedure clrBtnFirstEmotionalClick(Sender: TObject);
-    procedure clrBtnFirstIntellectualClick(Sender: TObject);
-    procedure clrBtnFirstIntuitionClick(Sender: TObject);
-    procedure clrBtnFirstPhysicalClick(Sender: TObject);
-    procedure clrBtnFirstPriCombinedClick(Sender: TObject);
-    procedure clrBtnFirstOverallClick(Sender: TObject);
-    procedure clrBtnFirstSpitualClick(Sender: TObject);
-    procedure clrBtnFirstSecCombinedClick(Sender: TObject);
+    procedure clrBtnColorChanged(Sender: TObject);
     procedure FormActivate(Sender: TObject);
   private
     procedure colourStuff;
@@ -140,8 +131,8 @@ begin
   clrBtnFirstEmotional.ButtonColor    := userOptions.clrFirstEmotional;
   lblFirstPriCombined.font.Color      := userOptions.clrFirstPriCombined;
   clrBtnFirstPriCombined.ButtonColor  := userOptions.clrFirstPriCombined;
-  lblFirstSpitual.font.Color         := userOptions.clrFirstSpitual;
-  clrBtnFirstSpitual.ButtonColor     := userOptions.clrFirstSpitual;
+  lblFirstSpitual.font.Color          := userOptions.clrFirstSpitual;
+  clrBtnFirstSpitual.ButtonColor      := userOptions.clrFirstSpitual;
   lblFirstAesthetic.font.Color        := userOptions.clrFirstAesthetic;
   clrBtnFirstAesthetic.ButtonColor    := userOptions.clrFirstAesthetic;
   lblFirstAwaraness.font.Color        := userOptions.clrFirstAwareness;
@@ -149,9 +140,9 @@ begin
   lblFirstIntuition.font.Color        := userOptions.clrFirstIntuition;
   clrBtnFirstIntuition.ButtonColor    := userOptions.clrFirstIntuition;
   lblFirstSecCombined.font.Color      := userOptions.clrFirstSecCombined;
-  clrBtnFirstSecCombined.ButtonColor       := userOptions.clrFirstSecCombined;
-  lblFirstOverall.Font.Color       := userOptions.clrFirstOverall;
-  clrBtnFirstOverall.ButtonColor   := userOptions.clrFirstOverall;
+  clrBtnFirstSecCombined.ButtonColor  := userOptions.clrFirstSecCombined;
+  lblFirstOverall.Font.Color          := userOptions.clrFirstOverall;
+  clrBtnFirstOverall.ButtonColor      := userOptions.clrFirstOverall;
 
   lblSecondPhysical.font.Color         := userOptions.clrSecondPhysical;
   clrBtnSecondPhysical.ButtonColor     := userOptions.clrSecondPhysical;
@@ -178,7 +169,7 @@ end;
 //  ..................................... Forms Buttons ........................
 //
 procedure TfrmOptions.btnExitClick(Sender: TObject);
-{  The Exitl button has been pressed, so we forget any changes.
+{  The Exit button has been pressed, so we forget any changes.
     Since the changes are made to userBacOptions - we don't need to do nowt.
 }
 begin
@@ -205,71 +196,70 @@ procedure TfrmOptions.btnResetClick(Sender: TObject);
 }
 begin
   userOptions.writeDefaultOptions;
+  userOptions.writeCurrentOptions;
 end;
 
 //
 //  ..................................... Colour Buttons .......................
 //
-procedure TfrmOptions.clrBtnFirstPhysicalClick(Sender: TObject);
-begin
-  lblFirstPhysical.Font.Color     := clrBtnFirstPhysical.ButtonColor;
-  userbacOptions.clrFirstPhysical := clrBtnFirstPhysical.ButtonColor;
-end;
 
-procedure TfrmOptions.clrBtnFirstIntellectualClick(Sender: TObject);
-begin
-  lblFirstIntellectual.Font.Color     := clrBtnFirstIntellectual.ButtonColor;
-  userbacOptions.clrFirstIntellectual := clrBtnFirstIntellectual.ButtonColor;
-end;
+procedure TfrmOptions.clrBtnColorChanged(Sender: TObject);
+{  This a generic procedure which is call by every colour button when clicked.
 
-procedure TfrmOptions.clrBtnFirstEmotionalClick(Sender: TObject);
+   1 A temp colour button is created and assigned to the clicked button [sender].
+   2 A lebel name is generated from the click buttons name.
+   3 The labels colour is set.
+   4 The appropiate option is set, using a case statement on the label name.
+}
+VAR
+  tmpButton : TColorButton;
+  tmpLabel  : TLabel;
+  labelName : string;
 begin
-  lblFirstEmotional.Font.Color     := clrBtnFirstEmotional.ButtonColor;
-  userbacOptions.clrFirstEmotional := clrBtnFirstEmotional.ButtonColor;
-end;
+  //  if not called by a click on a colour button then exit.
+  if not (Sender is TColorButton) then Exit;
 
-procedure TfrmOptions.clrBtnFirstPriCombinedClick(Sender: TObject);
-begin
-  lblFirstPriCombined.Font.Color     := clrBtnFirstPriCombined.ButtonColor;
-  userbacOptions.clrFirstPriCombined := clrBtnFirstPriCombined.ButtonColor;
-end;
+  //  create a temp colour button and assign to caller.
+  tmpButton := TColorButton(Sender);
 
-procedure TfrmOptions.clrBtnFirstSpitualClick(Sender: TObject);
-begin
-  lblFirstSpitual.Font.Color     := clrBtnFirstSpitual.ButtonColor;
-  userbacOptions.clrFirstSpitual := clrBtnFirstSpitual.ButtonColor;
-end;
+  //  Determind the label name, will be the same as button mame just with a differnet prefix.
+  //  no rfReplaceAll option - just change first occurance.
+  labelName := StringReplace(tmpButton.Name, 'clrBtn', 'lbl', [rfIgnoreCase]);
 
-procedure TfrmOptions.clrBtnFirstAestheticClick(Sender: TObject);
-begin
-  lblFirstAesthetic.Font.Color     := clrBtnFirstAesthetic.ButtonColor;
-  userbacOptions.clrFirstAesthetic := clrBtnFirstAesthetic.ButtonColor;
-end;
+  //  try and find the label
+  tmplabel := FindComponent(labelName) as TLabel;
 
-procedure TfrmOptions.clrBtnFirstAwaranessClick(Sender: TObject);
-begin
-  lblFirstAwaraness.Font.Color     := clrBtnFirstAwaraness.ButtonColor;
-  userbacOptions.clrFirstAwareness := clrBtnFirstAwaraness.ButtonColor;
-end;
+  if tmpLabel <> nil then                               // found label.
+    begin
+      tmplabel.Font.Color    := tmpButton.ButtonColor;  //  set label colour to button colour.
 
-procedure TfrmOptions.clrBtnFirstIntuitionClick(Sender: TObject);
-begin
-  lblFirstIntuition.Font.Color     := clrBtnFirstIntuition.ButtonColor;
-  userbacOptions.clrFirstIntuition := clrBtnFirstIntuition.ButtonColor;
-end;
+      case labelName of
+        'lblFirstPhysical'     : userbacOptions.clrFirstPhysical      := tmpButton.ButtonColor;
+        'lblFirstIntellectual' : userbacOptions.clrFirstIntellectual  := tmpButton.ButtonColor;
+        'lblFirstEmotional'    : userbacOptions.clrFirstEmotional     := tmpButton.ButtonColor;
+        'lblFirstPriCombined'  : userbacOptions.clrFirstPriCombined   := tmpButton.ButtonColor;
+        'lblFirstSpitual'      : userbacOptions.clrFirstSpitual       := tmpButton.ButtonColor;
+        'lblFirstAesthetic'    : userbacOptions.clrFirstAesthetic     := tmpButton.ButtonColor;
+        'lblFirstAwaraness'    : userbacOptions.clrFirstAwareness     := tmpButton.ButtonColor;
+        'lblFirstIntuition'    : userbacOptions.clrFirstIntuition     := tmpButton.ButtonColor;
+        'lblFirstSecCombined'  : userbacOptions.clrFirstSecCombined   := tmpButton.ButtonColor;
+        'lblFirstOverall'      : userbacOptions.clrFirstOverall       := tmpButton.ButtonColor;
 
-procedure TfrmOptions.clrBtnFirstSecCombinedClick(Sender: TObject);
-begin
-  lblFirstSecCombined.Font.Color     := clrBtnFirstSecCombined.ButtonColor;
-  userbacOptions.clrFirstSecCombined := clrBtnFirstSecCombined.ButtonColor;
-end;
+        'lbllblSecondSpirtual' : userbacOptions.clrSecondSpitual      := tmpButton.ButtonColor;
+        'lblSecondAesthetic'   : userbacOptions.clrSecondAesthetic    := tmpButton.ButtonColor;
+        'lblSecondAweraness'   : userbacOptions.clrSecondAwareness    := tmpButton.ButtonColor;
+        'lblSecondIntuition'   : userbacOptions.clrSecondIntuition    := tmpButton.ButtonColor;
+        'lblSecondPriCombined' : userbacOptions.clrSecondPriCombined  := tmpButton.ButtonColor;
+        'lblSecondPhysical'    : userbacOptions.clrSecondPhysical     := tmpButton.ButtonColor;
+        'lblSecondIntellectual': userbacOptions.clrSecondIntellectual := tmpButton.ButtonColor;
+        'lblSecondEmotional'   : userbacOptions.clrSecondEmotional    := tmpButton.ButtonColor;
+        'lblSecondSecCombined' : userbacOptions.clrSecondSecCombined  := tmpButton.ButtonColor;
+        'lblSecondOverall'     : userbacOptions.clrSecondOverall      := tmpButton.ButtonColor;
+      end;  //  case labelName of
 
-procedure TfrmOptions.clrBtnFirstOverallClick(Sender: TObject);
-begin
-  lblFirstOverall.Font.Color     := clrBtnFirstOverall.ButtonColor;
-  userbacOptions.clrFirstOverall := clrBtnFirstOverall.ButtonColor;
-end;
+    end;    //  if tmpLabel <> nil then
 
+end;
 
 
 end.

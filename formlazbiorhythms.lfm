@@ -322,12 +322,12 @@ object frmLazBiorhythms: TfrmLazBiorhythms
       OnClick = checkBoxClick
       TabOrder = 4
     end
-    object lblFirstSpirtual: TLabel
+    object lblFirstSpiritual: TLabel
       Left = 216
       Height = 15
       Top = -4
-      Width = 40
-      Caption = 'Spirtual'
+      Width = 43
+      Caption = 'Spiritual'
       Font.Color = clMaroon
       ParentColor = False
       ParentFont = False
@@ -564,12 +564,12 @@ object frmLazBiorhythms: TfrmLazBiorhythms
       ParentColor = False
       ParentFont = False
     end
-    object lblSecondSpirtual: TLabel
+    object lblSecondSpiritual: TLabel
       Left = 216
       Height = 15
       Top = -4
-      Width = 40
-      Caption = 'Spirtual'
+      Width = 43
+      Caption = 'Spiritual'
       Font.Color = clMaroon
       ParentColor = False
       ParentFont = False

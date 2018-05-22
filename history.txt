@@ -76,3 +76,20 @@ Currently
 1983 lines of source code.
 1139 statements
 15.6% 
+
+
+Build 7
+
+Completed the code and testing of the colour option for both people.
+
+Combined all the colour button colour change procedures into one generic
+procedure in formOptions.
+
+Corrected a bug with writing default options in uOptions.
+
+Corrected a bug with compile time in formAbout.
+
+Currently
+1982 lines of source code.
+1180 statements
+16.5% 

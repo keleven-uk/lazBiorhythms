@@ -14,7 +14,8 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <MajorVersionNr Value="1"/>
-      <BuildNr Value="6"/>
+      <BuildNr Value="7"/>
+      <Language Value="0809"/>
       <StringTable Comments="conatct :: lazBiorhythms&lt;at>keleven.co.uk" CompanyName="www.keleven.co.uk" FileDescription="A lazarus program to draw a persons Biorhythms" InternalName="lazBiorhythms" LegalCopyright="(c) Kevin Scott  2018" OriginalFilename="lazBiorhythms" ProductName="lazBiorhythms"/>
     </VersionInfo>
     <BuildModes Count="1">
@@ -36,7 +37,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="3">
+    <Units Count="4">
       <Unit0>
         <Filename Value="LazBiorhythms.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -54,6 +55,14 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="LazBiorhythmsUntils"/>
       </Unit2>
+      <Unit3>
+        <Filename Value="formabout.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmAbout"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="formAbout"/>
+      </Unit3>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
