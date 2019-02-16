@@ -306,7 +306,6 @@ implementation
   var
     fvi      : myFileVersionInfo;
     PassNode : TDOMNode;
-    childNode: TDOMNode;
     Doc      : TXMLDocument;
     rtn      : string;
   begin
@@ -324,6 +323,9 @@ implementation
       originalFileName := fvi.fileOriginalFileName;
       productName := fvi.fileProductName;
       productVersion := fvi.fileProductVersion;
+    finally
+      fvi.Free;
+    end;
 
       try
         // Read in xml file from disk
@@ -403,10 +405,7 @@ implementation
         if rtn <> 'ERROR' then clrSecondOverall := StringToColor(rtn);
       end;
 
-    finally
-      // finally, free the document
       Doc.Free;
-    end;
   end;
 
   procedure Options.writeDefaultOptions;
@@ -431,6 +430,8 @@ implementation
     originalFileName := fvi.fileOriginalFileName;
     productName      := fvi.fileProductName;
     productVersion   := fvi.fileProductVersion;
+
+    fvi.Free;
 
     // Global
     Firstbirthdate  := encodeDate(1958, 04, 02);
@@ -471,8 +472,6 @@ implementation
   Doc        : TXMLDocument;
   RootNode   : TDOMNode;
   ElementNode: TDOMNode;
-  ItemNode   : TDOMNode;
-  TextNode   : TDOMNode;
   fvi        : myFileVersionInfo;
   begin
     try
@@ -551,6 +550,7 @@ implementation
 
     finally
       Doc.Free;
+      fvi.Free;
     end;
   end;
 
@@ -570,17 +570,17 @@ implementation
     try
       FileVerInfo.ReadFileInfo;
 
-      fileComments := FileVerInfo.VersionStrings.Values['Comments'];
-      fileCompanyName := FileVerInfo.VersionStrings.Values['CompanyName'];
-      fileFileDescription := FileVerInfo.VersionStrings.Values['FileDescription'];
-      fileFileVersion := FileVerInfo.VersionStrings.Values['FileVersion'];
-      fileInternalName := FileVerInfo.VersionStrings.Values['InternalName'];
-      fileLegalCopyright := FileVerInfo.VersionStrings.Values['LegalCopyright'];
+      fileComments         := FileVerInfo.VersionStrings.Values['Comments'];
+      fileCompanyName      := FileVerInfo.VersionStrings.Values['CompanyName'];
+      fileFileDescription  := FileVerInfo.VersionStrings.Values['FileDescription'];
+      fileFileVersion      := FileVerInfo.VersionStrings.Values['FileVersion'];
+      fileInternalName     := FileVerInfo.VersionStrings.Values['InternalName'];
+      fileLegalCopyright   := FileVerInfo.VersionStrings.Values['LegalCopyright'];
       fileOriginalFileName := FileVerInfo.VersionStrings.Values['OriginalFilename'];
-      fileProductName := FileVerInfo.VersionStrings.Values['ProductName'];
-      fileProductVersion := FileVerInfo.VersionStrings.Values['ProductVersion'];
+      fileProductName      := FileVerInfo.VersionStrings.Values['ProductName'];
+      fileProductVersion   := FileVerInfo.VersionStrings.Values['ProductVersion'];
     finally
-          FileVerInfo.Free;
+      FileVerInfo.Free;
     end;
 
   end;

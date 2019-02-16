@@ -93,3 +93,19 @@ Currently
 1982 lines of source code.
 1180 statements
 16.5% 
+
+
+Build 8
+
+Corrected memory leaks in uOptions.pas - not freeing fvi object.
+
+Added constants to frmLazBiorhythms.pas for periods of the rhythms.
+
+Corrected spelling.
+
+** Compiled with Lazarus V2.0.0.4 **
+
+Currently
+2015 lines of source code.
+1192 statements
+16.2% 

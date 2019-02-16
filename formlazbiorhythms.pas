@@ -1,7 +1,7 @@
 unit formLazBiorhythms;
 
 {
-    A lazarus program to draw a persons Biorhythms
+    A Lazarus program to draw a persons Biorhythms
     Copyright (C) <2018>  <Kevin Scott>
 
     This program is free software: you can redistribute it and/or modify
@@ -40,6 +40,16 @@ uses
   Classes, SysUtils, FileUtil, TAGraph, TAIntervalSources, TASeries, Forms,
   Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, EditBtn, Menus, dateutils,
   formhelp, formLicence, formAbout, formOptions, uOptions, math;
+
+CONST
+  PHYSICAL     = 23;
+  EMOTIONAL    = 28;
+  INTELLECTUAL = 33;
+  SPIRITUAL    = 53;
+  AWARENESS    = 48;
+  AESTHETIC    = 43;
+  INTUITION    = 38;
+  PLOT_START   = 30;     //  where to start the plot.
 
 type
 
@@ -187,10 +197,11 @@ procedure TfrmLazBiorhythms.FormClose(Sender: TObject; var CloseAction: TCloseAc
 begin
   userOptions.writeCurrentOptions;  // write out options file.
   userOptions.Free;                 //  Release the user options.
+  CloseAction:= caFree;
 end;
 
 procedure TfrmLazBiorhythms.DtEdtFirstBirthDayChange(Sender: TObject);
-{  When a first birthdate has been entered, draw chart.    }
+{  When a first birth date has been entered, draw chart.    }
 begin
   userOptions.Firstbirthdate   := DtEdtFirstBirthDay.Date;
   lblFirstBirthdayInfo.Caption := format('You have been alive %d days', [DaysBetween(today, userOptions.Firstbirthdate)]);
@@ -199,7 +210,7 @@ begin
 end;
 
 procedure TfrmLazBiorhythms.DtEdtSecondBirthDayChange(Sender: TObject);
-{  When a second birthdate has been entered, draw chart.    }
+{  When a second birth date has been entered, draw chart.    }
 begin
   userOptions.Secondbirthdate   := DtEdtSecondBirthDay.Date;
   lblSecondBirthdayInfo.Caption := format('You have been alive %d days', [DaysBetween(today, userOptions.Secondbirthdate)]);
@@ -216,7 +227,7 @@ end;
 procedure TfrmLazBiorhythms.plotChart;
 {  Draw the actual Biorhythms.
 
-   first and second user things need a tidy up.
+   First and second user things need a tidy up.
 }
 const
   N = 60;                             //  number of days.
@@ -235,37 +246,47 @@ begin
   begin
     daysAlive := DaysBetween(today, userOptions.Firstbirthdate);
 
-    sdays := daysAlive - 30;        //  where to start the plot today - 30 days.
+    sdays := daysAlive - PLOT_START;        //  where to start the plot.
     sdate := today;
-    sdate := sdate - 30;
+    sdate := sdate - PLOT_START;
 
     for f:=0 to N-1 do begin
       x    := sdays + f;
       days := 2 * PI * x;
 
       if chckBxFirstPhysical.Checked then
-        lnSrsFirstPhysical.AddXY(sdate, sin(days / 23));
+        lnSrsFirstPhysical.AddXY(sdate, sin(days / PHYSICAL));
       if chckBxFirstEmotional.Checked
-        then lnSrsFirstEmotional.AddXY(sdate, sin(days / 28));
+        then lnSrsFirstEmotional.AddXY(sdate, sin(days / EMOTIONAL));
       if chckBxFirstIntellectual.Checked
-        then lnSrsFirstIntellectual.AddXY(sdate, sin(days / 33));
+        then lnSrsFirstIntellectual.AddXY(sdate, sin(days / INTELLECTUAL));
       if chckBxFirstPrimaryCombined.Checked then
-        lnSrsFirstPrimaryCombined.AddXY(sdate, sin(days / 23) + sin(days / 28) + sin(days / 33));
+        lnSrsFirstPrimaryCombined.AddXY(sdate, sin(days / PHYSICAL) +
+                                               sin(days / EMOTIONAL) +
+                                               sin(days / INTELLECTUAL));
 
       if chckBxFirstSpirtual.Checked then
-        lnSrsFirstSpiritial.AddXY(sdate, sin(days / 53));
+        lnSrsFirstSpiritial.AddXY(sdate, sin(days / SPIRITUAL));
       if chckBxFirstAwareness.Checked then
-        lnSrsFirstAwareness.AddXY(sdate, sin(days / 48));
+        lnSrsFirstAwareness.AddXY(sdate, sin(days / AWARENESS));
       if chckBxFirstAesthetic.Checked then
-        lnSrsFirstAesthetic.AddXY(sdate, sin(days / 43));
+        lnSrsFirstAesthetic.AddXY(sdate, sin(days / AESTHETIC));
       if chckBxFirstIntuition.Checked then
-        lnSrsFirstIntuition.AddXY(sdate, sin(days / 38));
+        lnSrsFirstIntuition.AddXY(sdate, sin(days / INTUITION));
       if chckBxFirstSecondaryCombined.Checked then
-        lnSrsFirstSecondaryCombined.AddXY(sdate, sin(days / 53) + sin(days / 48) + sin(days / 43) + sin(days / 38));
+        lnSrsFirstSecondaryCombined.AddXY(sdate, sin(days / SPIRITUAL) +
+                                                 sin(days / AWARENESS) +
+                                                 sin(days / AESTHETIC) +
+                                                 sin(days / INTUITION));
 
       if chckBxFirstOverall.Checked then
-        lnSrsFirstOverall.AddXY(sdate, sin(days / 23) + sin(days / 28) + sin(days / 33) +
-                                       sin(days / 53) + sin(days / 48) + sin(days / 43) + sin(days / 38));
+        lnSrsFirstOverall.AddXY(sdate, sin(days / PHYSICAL) +
+                                       sin(days / EMOTIONAL) +
+                                       sin(days / INTELLECTUAL) +
+                                       sin(days / SPIRITUAL) +
+                                       sin(days / AWARENESS) +
+                                       sin(days / AESTHETIC) +
+                                       sin(days / INTUITION));
       sdate := sdate + 1;
     end;
   end;
@@ -274,37 +295,47 @@ begin
   begin
     daysAlive := DaysBetween(today, userOptions.Secondbirthdate);
 
-    sdays := daysAlive - 30;        //  where to start the plot today - 30 days.
+    sdays := daysAlive - PLOT_START;        //  where to start the plot.
     sdate := today;
-    sdate := sdate - 30;
+    sdate := sdate - PLOT_START;
 
     for f:=0 to N-1 do begin
       x    := sdays + f;
       days := 2 * PI * x;
 
       if chckBxSecondPhysical.Checked then
-        lnSrsSecondPhysical.AddXY(sdate, sin(days / 23));
+        lnSrsSecondPhysical.AddXY(sdate, sin(days / PHYSICAL));
       if chckBxSecondEmotional.Checked
-        then lnSrsSecondEmotional.AddXY(sdate, sin(days / 28));
+        then lnSrsSecondEmotional.AddXY(sdate, sin(days / EMOTIONAL));
       if chckBxSecondIntellectual.Checked
-        then lnSrsSecondIntellectual.AddXY(sdate, sin(days / 33));
+        then lnSrsSecondIntellectual.AddXY(sdate, sin(days / INTELLECTUAL));
       if chckBxSecondPrimaryCombined.Checked then
-        lnSrsSecondPrimaryCombined.AddXY(sdate, sin(days / 23) + sin(days / 28) + sin(days / 33));
+        lnSrsSecondPrimaryCombined.AddXY(sdate, sin(days / PHYSICAL) +
+                                                sin(days / EMOTIONAL) +
+                                                sin(days / INTELLECTUAL));
 
       if chckBxSecondSpirtual.Checked then
-        lnSrsSecondSpiritial.AddXY(sdate, sin(days / 53));
+        lnSrsSecondSpiritial.AddXY(sdate, sin(days / SPIRITUAL));
       if chckBxSecondAwareness.Checked then
-        lnSrsSecondAwareness.AddXY(sdate, sin(days / 48));
+        lnSrsSecondAwareness.AddXY(sdate, sin(days / AWARENESS));
       if chckBxSecondAesthetic.Checked then
-        lnSrsSecondAesthetic.AddXY(sdate, sin(days / 43));
+        lnSrsSecondAesthetic.AddXY(sdate, sin(days / AESTHETIC));
       if chckBxSecondIntuition.Checked then
-        lnSrsSecondIntuition.AddXY(sdate, sin(days / 38));
+        lnSrsSecondIntuition.AddXY(sdate, sin(days / INTUITION));
       if chckBxSecondSecondaryCombined.Checked then
-        lnSrsSecondSecondaryCombined.AddXY(sdate, sin(days / 53) + sin(days / 48) + sin(days / 43) + sin(days / 38));
+        lnSrsSecondSecondaryCombined.AddXY(sdate, sin(days / SPIRITUAL) +
+                                                  sin(days / AWARENESS) +
+                                                  sin(days / AESTHETIC) +
+                                                  sin(days / INTUITION));
 
       if chckBxSecondOverall.Checked then
-        lnSrsSecondOverall.AddXY(sdate, sin(days / 23) + sin(days / 28) + sin(days / 33) +
-                                        sin(days / 53) + sin(days / 48) + sin(days / 43) + sin(days / 38));
+        lnSrsSecondOverall.AddXY(sdate, sin(days / PHYSICAL) +
+                                        sin(days / EMOTIONAL) +
+                                        sin(days / INTELLECTUAL) +
+                                        sin(days / SPIRITUAL) +
+                                        sin(days / AWARENESS) +
+                                        sin(days / AESTHETIC) +
+                                        sin(days / INTUITION));
 
       sdate := sdate + 1;
     end;
@@ -317,18 +348,20 @@ begin
 end;
 
 procedure TfrmLazBiorhythms.setToday;
-{  Drawa a vertical bar to indicate today, on the chart.
+{  Draws a vertical bar to indicate today, on the chart.
 
    It looks at each user series to try and determine the range.
    The Overall series will be the larger, then the combined.
    The individual series all will have the same magnitude.
-   if either Overall or Combined are not used - they return inf, which if ignored.
+   If either Overall or Combined are not used - they return inf, which if ignored.
    All returned values are loaded into a array, then min or max can be determined.
    If none is used, use defaults.
 }
+Type
+  values = array[0..4] of double;
 VAR
-  minArray : array[0..4] of double;
-  maxArray : array[0..4] of double;
+  minArray : values;
+  maxArray : values;
 begin
   minArray[0] := lnSrsFirstSecondaryCombined.MinYValue;
   minArray[1] := lnSrsSecondSecondaryCombined.MinYValue;
@@ -382,7 +415,7 @@ begin
 end;
 
 procedure TfrmLazBiorhythms.plotSeries;
-{  If eisther user is checked then drwa thier curves,
+{  If either user is checked then draw their curves,
    if neither then clear series.
 }
 begin

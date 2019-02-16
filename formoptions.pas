@@ -207,9 +207,9 @@ procedure TfrmOptions.clrBtnColorChanged(Sender: TObject);
 {  This a generic procedure which is call by every colour button when clicked.
 
    1 A temp colour button is created and assigned to the clicked button [sender].
-   2 A lebel name is generated from the click buttons name.
+   2 A label name is generated from the click buttons name.
    3 The labels colour is set.
-   4 The appropiate option is set, using a case statement on the label name.
+   4 The appropriate option is set, using a case statement on the label name.
 }
 VAR
   tmpButton : TColorButton;
@@ -222,8 +222,8 @@ begin
   //  create a temp colour button and assign to caller.
   tmpButton := TColorButton(Sender);
 
-  //  Determind the label name, will be the same as button mame just with a differnet prefix.
-  //  no rfReplaceAll option - just change first occurance.
+  //  Determine the label name, will be the same as button name just with a different prefix.
+  //  no rfReplaceAll option - just change first occurrence.
   labelName := StringReplace(tmpButton.Name, 'clrBtn', 'lbl', [rfIgnoreCase]);
 
   //  try and find the label

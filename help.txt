@@ -1,6 +1,6 @@
 lazBiorhythms
 
-A Lazarus program to draw a Biorhythms.
+A Lazarus program to draw Biorhythms.
 
 The Biorhythms for one or two people can be drawn, just click on the appropriate user.
 
@@ -21,6 +21,8 @@ Secondary
 
 Both the Primary and Secondary can be combined into one plot, as can all seven rhythms.
 
-The colours or all the plats can be customised, got file / options.
+The colours of all the plots can be customised, go to file / options.
 
-Once Birth dates have been entered, change of colours too, they will be remembered and used next time.
+Once Birth dates have been entered and change of colours, will be remembered and used next time.
+
+
